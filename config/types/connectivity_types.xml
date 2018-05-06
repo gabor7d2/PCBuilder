@@ -1,0 +1,40 @@
+<root>
+    <category name="Graphics" location="external">
+        <type>D-Sub</type>
+        <type>DVI</type>
+        <type>HDMI</type>
+        <type>DP</type>
+    </category>
+    <category name="Audio" location="external">
+        <type>Audio Jack</type>
+        <type>SPDIF</type>
+    </category>
+    <category name="Audio" location="internal">
+        <type>Front Audio Header</type>
+        <type>SPDIF Header</type>
+    </category>
+    <category name="Networking" location="external">
+        <type>LAN</type>
+        <type>Wi-Fi</type>
+        <type>Bluetooth</type>
+    </category>
+    <category name="Peripheral" location="external">
+        <type>USB Port</type>
+        <type>PS/2 Port</type>
+    </category>
+    <category name="Peripheral" location="internal">
+        <type>USB Header</type>
+    </category>
+    <category name="Storage" location="internal">
+        <type>SATA</type>
+        <type>M.2</type>
+    </category>
+    <category name="Fan" location="internal">
+        <type>CPU Fan Header</type>
+        <type>System Fan Header</type>
+    </category>í
+    <category name="Other" location="internal">
+        <type>Front Header</type>
+        <type>RGB Header</type>
+    </category>
+</root>

@@ -1,0 +1,30 @@
+<root>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>4000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>8000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+</root>

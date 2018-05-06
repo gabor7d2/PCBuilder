@@ -1,0 +1,151 @@
+<root>
+    <Motherboard>
+        <ComponentInfo>
+            <brand>Gigabyte</brand>
+            <model_number>Z370 HD3</model_number>
+        </ComponentInfo>
+        <CpuType>
+            <brand>Intel</brand>
+            <socket>1151</socket>
+        </CpuType>
+        <RamTypes>
+            <RamType>
+                <type>DDR4</type>
+                <frequency>2133</frequency>
+            </RamType>
+            <RamType>
+                <type>DDR4</type>
+                <frequency>2400</frequency>
+            </RamType>
+            <RamType>
+                <type>DDR4</type>
+                <frequency>2666</frequency>
+            </RamType>
+        </RamTypes>
+
+        <ram_slots>4</ram_slots>
+        <ram_max_mb>64000</ram_max_mb>
+        <form_factor>ATX</form_factor>
+        <chipset>Z370</chipset>
+        <max_pcie_version>3</max_pcie_version>
+
+        <Connectivities>
+            <Connectivity>
+                <category>Peripheral</category>
+                <type>PS/2 Port</type>
+                <location>external</location>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Graphics</category>
+                <type>DVI</type>
+                <location>external</location>
+                <extra>1920x1200@60Hz</extra>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Graphics</category>
+                <type>HDMI</type>
+                <location>external</location>
+                <version>1.4</version>
+                <extra>4096x2160@30Hz</extra>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Peripheral</category>
+                <type>USB Port</type>
+                <location>external</location>
+                <version>3.1 Gen 1</version>
+                <count>4</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Peripheral</category>
+                <type>USB Port</type>
+                <location>external</location>
+                <version>2.0</version>
+                <count>2</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Networking</category>
+                <type>LAN</type>
+                <location>external</location>
+                <extra>10/100/1000 Mbit</extra>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Audio</category>
+                <type>Audio Jack</type>
+                <location>external</location>
+                <extra>(Center/Subwoofer Speaker Out, Rear Speaker Out, Side Speaker Out, Line In, Line Out, Mic In)
+                </extra>
+                <count>6</count>
+            </Connectivity>
+
+            <Connectivity>
+                <category>Fan</category>
+                <type>CPU Fan Header</type>
+                <location>internal</location>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Fan</category>
+                <type>System Fan Header</type>
+                <location>internal</location>
+                <count>3</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Other</category>
+                <type>RGB Header</type>
+                <location>internal</location>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Storage</category>
+                <type>SATA</type>
+                <location>internal</location>
+                <version>3</version>
+                <extra>6 Gb/s</extra>
+                <count>6</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Storage</category>
+                <type>M.2</type>
+                <location>internal</location>
+                <extra>Socket 3, M key, type 2242/2260/2280/22110</extra>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Other</category>
+                <type>Front Header</type>
+                <location>internal</location>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Audio</category>
+                <type>Front Audio Header</type>
+                <location>internal</location>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Audio</category>
+                <type>SPDIF Header</type>
+                <location>internal</location>
+                <count>1</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Peripheral</category>
+                <type>USB Header</type>
+                <location>internal</location>
+                <version>3.1 Gen 1</version>
+                <count>2</count>
+            </Connectivity>
+            <Connectivity>
+                <category>Peripheral</category>
+                <type>USB Header</type>
+                <location>internal</location>
+                <version>2.0</version>
+                <count>2</count>
+            </Connectivity>
+        </Connectivities>
+    </Motherboard>
+</root>

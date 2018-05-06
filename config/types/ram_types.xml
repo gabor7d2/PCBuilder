@@ -1,0 +1,48 @@
+<root>
+    <type name="DDR">
+		<frequency>333</frequency>
+		<frequency>400</frequency>
+	</type>
+	<type name="DDR2">
+		<frequency>400</frequency>
+		<frequency>533</frequency>
+		<frequency>667</frequency>
+		<frequency>800</frequency>
+		<frequency>1066</frequency>
+		<frequency>1200</frequency>
+	</type>
+    <type name="DDR3">
+		<frequency>1066</frequency>
+		<frequency>1333</frequency>
+		<frequency>1600</frequency>
+		<frequency>1866</frequency>
+		<frequency>2133</frequency>
+		<frequency>2400</frequency>
+		<frequency>2666</frequency>
+	</type>
+    <type name="DDR4">
+		<frequency>2133</frequency>
+		<frequency>2400</frequency>
+		<frequency>2666</frequency>
+		<frequency>2800</frequency>
+		<frequency>2933</frequency>
+		<frequency>3000</frequency>
+		<frequency>3200</frequency>
+		<frequency>3300</frequency>
+		<frequency>3333</frequency>
+		<frequency>3400</frequency>
+		<frequency>3466</frequency>
+		<frequency>3600</frequency>
+		<frequency>3733</frequency>
+		<frequency>3800</frequency>
+		<frequency>3866</frequency>
+		<frequency>4000</frequency>
+		<frequency>4133</frequency>
+		<frequency>4200</frequency>
+		<frequency>4266</frequency>
+		<frequency>4333</frequency>
+		<frequency>4400</frequency>
+		<frequency>4500</frequency>
+		<frequency>4600</frequency>
+	</type>
+</root>
