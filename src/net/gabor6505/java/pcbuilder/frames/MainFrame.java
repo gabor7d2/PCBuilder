@@ -1,21 +1,18 @@
 package net.gabor6505.java.pcbuilder.frames;
 
-import net.gabor6505.java.pcbuilder.utils.Format;
+import net.gabor6505.java.pcbuilder.elements.ScrollPane2D;
 import net.gabor6505.java.pcbuilder.xml.NodeList;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 import net.gabor6505.java.pcbuilder.xml.XmlParser;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainFrame extends JFrame implements MouseListener {
+public class MainFrame extends JFrame {
 
-    private final int WIDTH = 640;
-    private final int HEIGHT = 400;
+    private final static int WIDTH = 720;
+    private final static int HEIGHT = 480;
 
     private final static List<String> formFactors;
 
@@ -32,8 +29,8 @@ public class MainFrame extends JFrame implements MouseListener {
     private void init() {
         setTitle("PC Builder");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        setMaximumSize(new Dimension(WIDTH, Integer.MAX_VALUE));
+        //setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        //setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -49,40 +46,18 @@ public class MainFrame extends JFrame implements MouseListener {
             }
         }
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        getContentPane().add(panel);
+        ScrollPane2D comparisonPane = new ScrollPane2D(WIDTH, HEIGHT);
+        setContentPane(comparisonPane);
 
-        JButton button = new JButton("Click Me");
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(button);
-        button.addMouseListener(this);
+        for (int j = 0; j < 15; j++) {
+            List<JComponent> testLabels = new ArrayList<>();
+            for (int i = 0; i < 7; i++) {
+                JLabel longLabel = new JLabel("asefaesfesfesfgesgersgrsgdrsgdrsgderg ");
+                testLabels.add(longLabel);
+            }
+            comparisonPane.addRow(testLabels);
+        }
 
-        JRadioButton radioButton = new JRadioButton("Choose me");
-        JRadioButton radioButton2 = new JRadioButton("Choose me instead");
-        radioButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        radioButton2.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(radioButton);
-        buttonGroup.add(radioButton2);
-        panel.add(radioButton);
-        panel.add(radioButton2);
-
-        JTextArea textArea = new JTextArea();
-        textArea.setFont(textArea.getFont().deriveFont(12f));
-        panel.add(textArea);
-
-        JTextField text = new JTextField("Max RAM: " + Format.formatUnitValue(16000, Format.BYTES));
-        text.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //text.setMargin(new Insets(30, 20, 30, 20));
-        panel.add(text);
-
-        JCheckBox checkBox = new JCheckBox("Tick me please :)");
-        checkBox.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(checkBox);
-
-        pack();
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -94,42 +69,6 @@ public class MainFrame extends JFrame implements MouseListener {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    private long time = 0L;
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        time = System.currentTimeMillis();
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        try {
-            Desktop d = Desktop.getDesktop();
-            if (System.currentTimeMillis() - time >= 1500) {
-                d.browse(new URI("https://www.youtube.com/watch?v=s3xzVfyGLn4&t=48s"));
-            } else {
-                d.browse(new URI("http://mek.oszk.hu/06300/06304/06304.htm"));
-            }
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        }
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 
     public static List<String> getFormFactors() {
