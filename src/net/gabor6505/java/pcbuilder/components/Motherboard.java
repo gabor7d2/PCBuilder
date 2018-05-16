@@ -26,7 +26,7 @@ public class Motherboard extends ComponentBase {
             connectivities.add(new Connectivity(connectivity));
         }
 
-        moboList.add(new Motherboard(mobo.getBrand(), mobo.getModelNumber(), properties, cpuPlatform, ramPlatforms, connectivities));
+        moboList.add(new Motherboard(mobo.getComponentInfo(), properties, cpuPlatform, ramPlatforms, connectivities));
     };
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.COMPONENTS, "motherboards.xml", "Motherboard", NODE_NAMES, DATA_HANDLER);
@@ -44,8 +44,8 @@ public class Motherboard extends ComponentBase {
     private final short maxPcieVersion;
     private final List<Connectivity> connectivities;
 
-    private Motherboard(Brand brand, String modelNumber, ComponentProperties properties, CpuPlatform cpuPlatform, List<RamPlatform> ramPlatforms, List<Connectivity> connectivities) {
-        super(brand, modelNumber);
+    private Motherboard(NodeList componentInfoNode, ComponentProperties properties, CpuPlatform cpuPlatform, List<RamPlatform> ramPlatforms, List<Connectivity> connectivities) {
+        super(componentInfoNode, CONTRACT);
 
         this.cpuPlatform = cpuPlatform;
         this.ramPlatforms = ramPlatforms;

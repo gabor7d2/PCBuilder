@@ -2,7 +2,8 @@
     <Cpu>
         <ComponentInfo>
             <brand>Intel</brand>
-            <model_number>Core i5-8700K</model_number>
+            <model_number>Core i7-8700K</model_number>
+            <image_path_override>Intel_8th_Gen_i7</image_path_override>
         </ComponentInfo>
         <socket>1151</socket>
         <generation>8</generation>
@@ -34,6 +35,7 @@
         <ComponentInfo>
             <brand>Intel</brand>
             <model_number>Core i5-8600K</model_number>
+            <image_path_override>Intel_8th_Gen_i5</image_path_override>
         </ComponentInfo>
         <socket>1151</socket>
         <generation>8</generation>
@@ -65,6 +67,7 @@
         <ComponentInfo>
             <brand>Intel</brand>
             <model_number>Core i5-8400</model_number>
+            <image_path_override>Intel_8th_Gen_i5</image_path_override>
         </ComponentInfo>
         <socket>1151</socket>
         <generation>8</generation>

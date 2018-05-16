@@ -1,7 +1,7 @@
 package net.gabor6505.java.pcbuilder.components;
 
-import net.gabor6505.java.pcbuilder.types.Brand;
 import net.gabor6505.java.pcbuilder.xml.ComponentProperties;
+import net.gabor6505.java.pcbuilder.xml.NodeList;
 
 class IGpu extends ComponentBase {
 
@@ -11,8 +11,8 @@ class IGpu extends ComponentBase {
     private final int maxFrequencyMHz;
     private final short supportedDisplays;
 
-    IGpu(Brand brand, String modelNumber, ComponentProperties properties) {
-        super(brand, modelNumber);
+    IGpu(NodeList componentInfoNode, ComponentProperties properties) {
+        super(componentInfoNode, null);
 
         baseFrequencyMHz = properties.getInt(0);
         maxFrequencyMHz = properties.getInt(1);

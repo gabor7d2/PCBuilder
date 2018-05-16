@@ -58,6 +58,13 @@ public class MainFrame extends JFrame {
             comparisonPane.addRow(testLabels);
         }
 
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("test ersigoserk"));
+        JPanel panel2 = new JPanel();
+        panel2.add(new JLabel("test ersigoserk"));
+        comparisonPane.setPreviewPanel(1, panel);
+        comparisonPane.setPreviewPanel(4, panel2);
+
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);

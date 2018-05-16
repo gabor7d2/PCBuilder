@@ -3,6 +3,7 @@
         <ComponentInfo>
             <brand>Kingston</brand>
             <model_number>HyperX FURY</model_number>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
         </ComponentInfo>
         <RamType>
             <type>DDR4</type>
@@ -17,6 +18,7 @@
         <ComponentInfo>
             <brand>Kingston</brand>
             <model_number>HyperX FURY</model_number>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
         </ComponentInfo>
         <RamType>
             <type>DDR4</type>

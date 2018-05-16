@@ -1,15 +1,15 @@
 package net.gabor6505.java.pcbuilder.components;
 
-import net.gabor6505.java.pcbuilder.types.Brand;
 import net.gabor6505.java.pcbuilder.utils.Format;
+import net.gabor6505.java.pcbuilder.xml.NodeList;
 
 public class Gpu extends ComponentBase {
 
     private final int baseFrequencyMHz;
     private final int turboFrequencyMHz;
 
-    public Gpu(Brand brand, String modelNumber, int baseFrequencyMHz, int turboFrequencyMHz) {
-        super(brand, modelNumber);
+    public Gpu(NodeList componentInfoNode, int baseFrequencyMHz, int turboFrequencyMHz) {
+        super(componentInfoNode, null);
         this.baseFrequencyMHz = baseFrequencyMHz;
         this.turboFrequencyMHz = turboFrequencyMHz;
     }

@@ -10,7 +10,8 @@ public class XmlContract {
 
     public enum Folder {
         TYPES (CONFIG_FOLDER + "/types/"),
-        COMPONENTS (CONFIG_FOLDER + "/components/");
+        COMPONENTS (CONFIG_FOLDER + "/components/"),
+        IMAGES (CONFIG_FOLDER + "/component_images/");
 
         private final String folder;
 
@@ -72,7 +73,7 @@ public class XmlContract {
         dataHandler.processData(currentNode, properties);
     }
 
-    private String getTrimmedFileName() {
+    public String getTrimmedFileName() {
         if (getFileName().contains(".")) {
             return getFileName().substring(0, getFileName().lastIndexOf('.'));
         } else return getFileName();

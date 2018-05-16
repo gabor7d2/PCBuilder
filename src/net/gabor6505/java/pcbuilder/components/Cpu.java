@@ -21,9 +21,9 @@ public class Cpu extends ComponentBase {
         }
 
         Node iGpuNode = cpu.getNode("IGpu");
-        IGpu iGpu = new IGpu(iGpuNode.getBrand(), iGpuNode.getModelNumber(), iGpuNode.getNodesContent(IGpu.NODE_NAMES));
+        IGpu iGpu = new IGpu(iGpuNode.getComponentInfo(), iGpuNode.getNodesContent(IGpu.NODE_NAMES));
 
-        cpuList.add(new Cpu(cpu.getBrand(), cpu.getModelNumber(), properties, caches, iGpu));
+        cpuList.add(new Cpu(cpu.getComponentInfo(), properties, caches, iGpu));
     };
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.COMPONENTS, "cpus.xml", "Cpu", NODE_NAMES, DATA_HANDLER);
@@ -44,10 +44,10 @@ public class Cpu extends ComponentBase {
     private final short tdpW;
     private final IGpu iGpu;
 
-    public Cpu(Brand brand, String modelNumber, ComponentProperties properties, double[] cachesMB, IGpu iGpu) {
-        super(brand, modelNumber);
+    public Cpu(NodeList componentInfoNode, ComponentProperties properties, double[] cachesMB, IGpu iGpu) {
+        super(componentInfoNode, CONTRACT);
 
-        this.platform = CpuPlatform.getCpuPlatform(brand, properties.getString(8));
+        this.platform = CpuPlatform.getCpuPlatform(componentInfoNode.getNodeContent("brand"), properties.getString(8));
         this.cachesMB = cachesMB;
         this.iGpu = iGpu;
         generation = properties.getShort(0);

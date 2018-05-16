@@ -1,12 +1,8 @@
 package net.gabor6505.java.pcbuilder.components;
 
-import net.gabor6505.java.pcbuilder.types.Brand;
 import net.gabor6505.java.pcbuilder.utils.Format;
 import net.gabor6505.java.pcbuilder.types.RamPlatform;
-import net.gabor6505.java.pcbuilder.xml.ComponentProperties;
-import net.gabor6505.java.pcbuilder.xml.IXmlComponentBuilder;
-import net.gabor6505.java.pcbuilder.xml.XmlContract;
-import net.gabor6505.java.pcbuilder.xml.XmlParser;
+import net.gabor6505.java.pcbuilder.xml.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +16,7 @@ public class Ram extends ComponentBase {
     private static IXmlComponentBuilder DATA_HANDLER = (ram, properties) -> {
         RamPlatform ramPlatform = RamPlatform.getRamPlatform(ram.getNode("RamType"));
 
-        ramList.add(new Ram(ramPlatform, ram.getBrand(), ram.getModelNumber(), ram.getNodesContent(NODE_NAMES)));
+        ramList.add(new Ram(ram.getComponentInfo(), properties, ramPlatform));
     };
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.COMPONENTS, "rams.xml", "Ram", NODE_NAMES, DATA_HANDLER);
@@ -34,8 +30,8 @@ public class Ram extends ComponentBase {
     private final short count;
     private final short latency;
 
-    public Ram(RamPlatform platform, Brand brand, String modelNumber, ComponentProperties properties) {
-        super(brand, modelNumber);
+    public Ram(NodeList componentInfoNode, ComponentProperties properties, RamPlatform platform) {
+        super(componentInfoNode, CONTRACT);
 
         this.platform = platform;
         capacityPerPieceMB = properties.getInt(0);

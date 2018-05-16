@@ -47,7 +47,7 @@ public class Brand {
         return null;
     }
 
-    public static Brand getBrand(Node componentInfoNode) {
+    public static Brand getBrand(NodeList componentInfoNode) {
         return getBrand(componentInfoNode.getNodeContent("brand"));
     }
 }
