@@ -7,7 +7,7 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cpu extends ComponentBase {
+public class Cpu extends Component {
 
     private final static List<Cpu> cpuList = new ArrayList<>(0);
 
@@ -45,7 +45,7 @@ public class Cpu extends ComponentBase {
     private final IGpu iGpu;
 
     public Cpu(NodeList componentInfoNode, ComponentProperties properties, double[] cachesMB, IGpu iGpu) {
-        super(componentInfoNode, CONTRACT);
+        super(componentInfoNode, properties, CONTRACT);
 
         this.platform = CpuPlatform.getCpuPlatform(componentInfoNode.getNodeContent("brand"), properties.getString(8));
         this.cachesMB = cachesMB;
@@ -60,8 +60,20 @@ public class Cpu extends ComponentBase {
         tdpW = properties.getShort(7);
     }
 
+    @Override
+    public List<String> getExtraInfo() {
+        List<String> extraInfo = new ArrayList<>();
+        extraInfo.add(get("cores") + " Cores, " + get("threads") + " Threads");
+        extraInfo.add(get("base_frequency_mhz") + " / " + get("turbo_frequency_mhz"));
+        return extraInfo;
+    }
+
     public CpuPlatform getPlatform() {
         return platform;
+    }
+
+    public String getSocket() {
+        return platform.getPrefix() + platform.getSocket();
     }
 
     public String getGeneration() {
@@ -155,5 +167,9 @@ public class Cpu extends ComponentBase {
 
     public short getIGpuSupportedDisplays() {
         return iGpu.getSupportedDisplays();
+    }
+
+    public static List<Cpu> getCpuList() {
+        return cpuList;
     }
 }

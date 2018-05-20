@@ -7,7 +7,7 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ram extends ComponentBase {
+public class Ram extends Component {
 
     private final static List<Ram> ramList = new ArrayList<>(0);
 
@@ -31,7 +31,7 @@ public class Ram extends ComponentBase {
     private final short latency;
 
     public Ram(NodeList componentInfoNode, ComponentProperties properties, RamPlatform platform) {
-        super(componentInfoNode, CONTRACT);
+        super(componentInfoNode, properties, CONTRACT);
 
         this.platform = platform;
         capacityPerPieceMB = properties.getInt(0);
@@ -39,8 +39,32 @@ public class Ram extends ComponentBase {
         latency = properties.getShort(2);
     }
 
+    @Override
+    public List<String> getExtraInfo() {
+        List<String> extraInfo = new ArrayList<>();
+        extraInfo.add(getTypeName() + " " + getFrequencyDefaultFormat());
+        extraInfo.add(get("count") + " x " + get("capacity_per_piece_mb"));
+        return extraInfo;
+    }
+
+    public RamPlatform getPlatform() {
+        return platform;
+    }
+
+    public String getTypeName() {
+        return platform.getTypeName();
+    }
+
+    public int getFrequencyMHz() {
+        return platform.getFrequencyMHz();
+    }
+
     public String getFrequency() {
         return Format.formatUnitValue(platform.getFrequencyMHz(), Format.HERTZ);
+    }
+
+    public String getFrequencyDefaultFormat() {
+        return Format.formatUnitValueDefault(platform.getFrequencyMHz(), Format.HERTZ);
     }
 
     public int getCapacityPerPieceMB() {
@@ -49,10 +73,6 @@ public class Ram extends ComponentBase {
 
     public String getCapacityPerPiece() {
         return Format.formatUnitValue(capacityPerPieceMB, Format.BYTES);
-    }
-
-    public int getCapacityKB() {
-        return capacityPerPieceMB * count;
     }
 
     public String getCapacity() {
@@ -65,5 +85,9 @@ public class Ram extends ComponentBase {
 
     public short getLatency() {
         return latency;
+    }
+
+    public static List<Ram> getRamList() {
+        return ramList;
     }
 }

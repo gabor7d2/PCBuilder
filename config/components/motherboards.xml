@@ -3,6 +3,7 @@
         <ComponentInfo>
             <brand>Gigabyte</brand>
             <model_number>Z370 HD3</model_number>
+            <product_site>https://www.gigabyte.com/Motherboard/Z370-HD3-rev-10</product_site>
         </ComponentInfo>
         <CpuType>
             <brand>Intel</brand>

@@ -13,7 +13,6 @@ public class Node extends NodeList {
     }
 
     public Node() {
-        super();
         this.node = null;
     }
 

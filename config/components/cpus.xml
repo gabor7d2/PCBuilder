@@ -3,7 +3,7 @@
         <ComponentInfo>
             <brand>Intel</brand>
             <model_number>Core i7-8700K</model_number>
-            <image_path_override>Intel_8th_Gen_i7</image_path_override>
+            <product_site>https://ark.intel.com/products/126684/Intel-Core-i7-8700K-Processor-12M-Cache-up-to-4_70-GHz</product_site>
         </ComponentInfo>
         <socket>1151</socket>
         <generation>8</generation>
@@ -35,7 +35,7 @@
         <ComponentInfo>
             <brand>Intel</brand>
             <model_number>Core i5-8600K</model_number>
-            <image_path_override>Intel_8th_Gen_i5</image_path_override>
+            <product_site>https://ark.intel.com/products/126685/Intel-Core-i5-8600K-Processor-9M-Cache-up-to-4_30-GHz</product_site>
         </ComponentInfo>
         <socket>1151</socket>
         <generation>8</generation>
@@ -67,7 +67,7 @@
         <ComponentInfo>
             <brand>Intel</brand>
             <model_number>Core i5-8400</model_number>
-            <image_path_override>Intel_8th_Gen_i5</image_path_override>
+            <product_site>https://ark.intel.com/products/126687/Intel-Core-i5-8400-Processor-9M-Cache-up-to-4_00-GHz</product_site>
         </ComponentInfo>
         <socket>1151</socket>
         <generation>8</generation>

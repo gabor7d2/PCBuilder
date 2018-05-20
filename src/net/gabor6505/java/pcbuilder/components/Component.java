@@ -1,26 +1,35 @@
 package net.gabor6505.java.pcbuilder.components;
 
 import net.gabor6505.java.pcbuilder.types.Brand;
+import net.gabor6505.java.pcbuilder.xml.ComponentProperties;
 import net.gabor6505.java.pcbuilder.xml.NodeList;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 
-import static net.gabor6505.java.pcbuilder.utils.General.replaceSpaces;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ComponentBase {
+import static net.gabor6505.java.pcbuilder.utils.Utils.replaceSpaces;
+
+public class Component extends ComponentProperties {
 
     private final Brand brand;
     private final String modelNumber;
+    private final String productSite;
     private final String imagePath;
 
-    public ComponentBase(Brand brand, String modelNumber, String imagePath) {
+    public Component(Brand brand, String modelNumber, String productSite, String imagePath, ComponentProperties properties) {
+        super(properties.getValues(), properties.getKeys());
         this.brand = brand;
         this.modelNumber = modelNumber;
+        this.productSite = productSite;
         this.imagePath = imagePath;
     }
 
-    public ComponentBase(NodeList componentInfoNode, XmlContract contract) {
+    public Component(NodeList componentInfoNode, ComponentProperties properties, XmlContract contract) {
+        super(properties.getValues(), properties.getKeys());
         brand = Brand.getBrand(componentInfoNode);
         modelNumber = componentInfoNode.getNodeContent("model_number");
+        productSite = componentInfoNode.getNodeContent("product_site");
 
         String imagePathOverride = componentInfoNode.getNodeContent("image_path_override");
         if (imagePathOverride == null) {
@@ -41,7 +50,7 @@ public class ComponentBase {
             return;
         }
 
-        String imgPath = XmlContract.Folder.IMAGES.getValue() + contract.getTrimmedFileName() + "/";
+        String imgPath = XmlContract.Folder.COMPONENT_IMAGES.getValue() + contract.getTrimmedFileName() + "/";
 
         if (!imagePathOverride.equals("")) {
             imgPath += imagePathOverride;
@@ -49,8 +58,8 @@ public class ComponentBase {
             imgPath += replaceSpaces(brand.getName()) + "_" + replaceSpaces(modelNumber) + imagePathExtension;
         }
 
+        imgPath += ".png";
         imagePath = imgPath;
-        System.out.println(imagePath);
     }
 
     public Brand getBrand() {
@@ -65,7 +74,15 @@ public class ComponentBase {
         return modelNumber;
     }
 
+    public String getProductSite() {
+        return productSite;
+    }
+
     public String getImagePath() {
         return imagePath;
+    }
+
+    public List<String> getExtraInfo() {
+        return new ArrayList<>();
     }
 }

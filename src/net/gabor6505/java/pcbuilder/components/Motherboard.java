@@ -7,7 +7,7 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Motherboard extends ComponentBase {
+public class Motherboard extends Component {
 
     private final static List<Motherboard> moboList = new ArrayList<>(0);
 
@@ -45,7 +45,7 @@ public class Motherboard extends ComponentBase {
     private final List<Connectivity> connectivities;
 
     private Motherboard(NodeList componentInfoNode, ComponentProperties properties, CpuPlatform cpuPlatform, List<RamPlatform> ramPlatforms, List<Connectivity> connectivities) {
-        super(componentInfoNode, CONTRACT);
+        super(componentInfoNode, properties, CONTRACT);
 
         this.cpuPlatform = cpuPlatform;
         this.ramPlatforms = ramPlatforms;
@@ -121,4 +121,8 @@ public class Motherboard extends ComponentBase {
         }
         return returnList;
     }*/
+
+    public static List<Motherboard> getMotherboardList() {
+        return moboList;
+    }
 }

@@ -11,7 +11,8 @@ public class XmlContract {
     public enum Folder {
         TYPES (CONFIG_FOLDER + "/types/"),
         COMPONENTS (CONFIG_FOLDER + "/components/"),
-        IMAGES (CONFIG_FOLDER + "/component_images/");
+        COMPONENT_IMAGES(CONFIG_FOLDER + "/component_images/"),
+        CATEGORY_IMAGES (CONFIG_FOLDER + "/component_images/categories/");
 
         private final String folder;
 

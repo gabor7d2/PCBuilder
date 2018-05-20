@@ -1,20 +1,31 @@
 package net.gabor6505.java.pcbuilder.frames;
 
-import net.gabor6505.java.pcbuilder.elements.ScrollPane2D;
+import net.gabor6505.java.pcbuilder.components.Cpu;
+import net.gabor6505.java.pcbuilder.components.Motherboard;
+import net.gabor6505.java.pcbuilder.components.Ram;
+import net.gabor6505.java.pcbuilder.elements.ComparisonPane;
+import net.gabor6505.java.pcbuilder.elements.ComponentCategory;
 import net.gabor6505.java.pcbuilder.xml.NodeList;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 import net.gabor6505.java.pcbuilder.xml.XmlParser;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
-public class MainFrame extends JFrame {
+// TODO document classes
+// TODO auto sizing label
+// TODO make horizontal scrollbars hover over content and hide when mouse is not over it or after a bit of time the mouse has not moved
+public class MainFrame extends JFrame implements KeyListener {
 
-    private final static int WIDTH = 720;
-    private final static int HEIGHT = 480;
+    private final static int WIDTH = 800;
+    private final static int HEIGHT = 720;
 
     private final static List<String> formFactors;
+
+    private final ComparisonPane comparisonPane;
 
     static {
         NodeList root = XmlParser.parseXml(XmlContract.Folder.TYPES, "form_factors.xml");
@@ -23,6 +34,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super();
+        comparisonPane = new ComparisonPane(WIDTH, HEIGHT, this);
         init();
     }
 
@@ -34,6 +46,11 @@ public class MainFrame extends JFrame {
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+            /*UIDefaults defaults = UIManager.getLookAndFeel().getDefaults();
+            for (Object value : defaults.values()) {
+                System.out.println(value);
+            }*/
         } catch (Exception ignored) {
             try {
                 for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -46,36 +63,14 @@ public class MainFrame extends JFrame {
             }
         }
 
-        ScrollPane2D comparisonPane = new ScrollPane2D(WIDTH, HEIGHT);
-        setContentPane(comparisonPane);
-
-        for (int j = 0; j < 15; j++) {
-            List<JComponent> testLabels = new ArrayList<>();
-            for (int i = 0; i < 7; i++) {
-                JLabel longLabel = new JLabel("asefaesfesfesfgesgersgrsgdrsgdrsgderg ");
-                testLabels.add(longLabel);
-            }
-            comparisonPane.addRow(testLabels);
-        }
-
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("test ersigoserk"));
-        JPanel panel2 = new JPanel();
-        panel2.add(new JLabel("test ersigoserk"));
-        comparisonPane.setPreviewPanel(1, panel);
-        comparisonPane.setPreviewPanel(4, panel2);
+        comparisonPane.addCategory(new ComponentCategory("Motherboard", Motherboard.getMotherboardList()));
+        comparisonPane.addCategory(new ComponentCategory("CPU", Cpu.getCpuList()));
+        comparisonPane.addCategory(new ComponentCategory("RAM", Ram.getRamList()));
 
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
-
-        try {
-            Class.forName("net.gabor6505.java.pcbuilder.components.Motherboard");
-            Class.forName("net.gabor6505.java.pcbuilder.components.Cpu");
-            Class.forName("net.gabor6505.java.pcbuilder.components.Ram");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        revalidate();
     }
 
     public static List<String> getFormFactors() {
@@ -87,5 +82,20 @@ public class MainFrame extends JFrame {
             if (formFact.equals(formFactor)) return formFact;
         }
         return null;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
