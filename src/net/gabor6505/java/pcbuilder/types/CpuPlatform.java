@@ -1,5 +1,6 @@
 package net.gabor6505.java.pcbuilder.types;
 
+import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.*;
 
 import java.util.ArrayList;
@@ -68,6 +69,7 @@ public class CpuPlatform {
                 return type;
             }
         }
+        new TypeNotPresentException("Cpu Platform [" + brandName + ", " + socket + "] is not registered in " + CONTRACT.getFileName()).printStackTrace();
         return null;
     }
 

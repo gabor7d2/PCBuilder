@@ -1,5 +1,7 @@
 package net.gabor6505.java.pcbuilder.xml;
 
+import net.gabor6505.java.pcbuilder.components.Component;
+import net.gabor6505.java.pcbuilder.components.GenericComponent;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -52,7 +54,7 @@ public class XmlParser {
         return parseXml(new XmlContract(folder, fileName));
     }
 
-    public static void parseXmlComponents(XmlContract contract) {
+    public static void parseXmlComponents(XmlContract contract, List<Component> list) {
         long startTime = System.currentTimeMillis();
         NodeList[] nodes = parseXml(contract, true, false);
         System.out.println("Parsing " + contract.getFileName() + " took " + (System.currentTimeMillis() - startTime) + " ms");
@@ -60,8 +62,8 @@ public class XmlParser {
         for (NodeList root : nodes) {
             for (Node componentNode : root.getNodes(contract.getComponentName())) {
 
-                if (contract.getNodeNames() == null) contract.processData(componentNode, null);
-                else contract.processData(componentNode, componentNode.getNodesContent(contract.getNodeNames()));
+                if (contract.getNodeNames() == null) contract.processData(componentNode, null, list);
+                else contract.processData(componentNode, componentNode.getNodesContent(contract.getNodeNames()), list);
             }
         }
         System.out.println("Loading " + contract.getFileName() + " took " + (System.currentTimeMillis() - startTime) + " ms");

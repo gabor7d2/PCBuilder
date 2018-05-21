@@ -1,5 +1,6 @@
 package net.gabor6505.java.pcbuilder.types;
 
+import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.*;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class RamPlatform {
                 return type;
             }
         }
+        new TypeNotPresentException("Ram Platform [" + typeName + ", " + frequencyMHz + "] is not registered in " + CONTRACT.getFileName()).printStackTrace();
         return null;
     }
 

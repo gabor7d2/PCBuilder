@@ -1,8 +1,6 @@
 package net.gabor6505.java.pcbuilder.utils;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.net.URL;
 
@@ -13,6 +11,12 @@ public final class Utils {
 
     public static String replaceSpaces(String inputStr) {
         return inputStr.replace(' ', '_');
+    }
+
+    public static String removeExtension(String file) {
+        if (file.contains(".")) {
+            return file.substring(0, file.lastIndexOf('.'));
+        } else return file;
     }
 
     public static void fixSize(Component comp, Dimension d) {
@@ -28,6 +32,22 @@ public final class Utils {
 
     public static void fixSize(Component comp, Component componentSizeSource) {
         fixSize(comp, componentSizeSource.getSize());
+    }
+
+    public static void adjustHeight(Component comp, int height) {
+        Utils.fixSize(comp, comp.getWidth(), comp.getHeight() + height);
+    }
+
+    public static void adjustHeight(Component comp, Component childComp) {
+        Utils.adjustHeight(comp, childComp.getMinimumSize().height);
+    }
+
+    public static void adjustWidth(Component comp, int width) {
+        Utils.fixSize(comp, comp.getWidth() + width, comp.getHeight());
+    }
+
+    public static void adjustWidth(Component comp, Component childComp) {
+        Utils.adjustWidth(comp, childComp.getMinimumSize().width);
     }
 
     public static boolean openWebsite(URI uri) {

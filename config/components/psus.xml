@@ -1,0 +1,37 @@
+<root>
+    <Psu>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>VS550</model_number>
+            <product_site>https://www.corsair.com/us/en/Categories/Products/Power-Supply-Units/vs-series-config-2018/p/CP-9020171-NA</product_site>
+        </ComponentInfo>
+    </Psu>
+    <Psu>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>CX550M</model_number>
+            <product_site>https://www.corsair.com/ww/en/Power/cxm-series-2015-config/p/CP-9020102-EU</product_site>
+        </ComponentInfo>
+    </Psu>
+    <Psu>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>VS650</model_number>
+            <product_site>https://www.corsair.com/us/en/Categories/Products/Power-Supply-Units/vs-series-config-2018/p/CP-9020172-NA</product_site>
+        </ComponentInfo>
+    </Psu>
+    <Psu>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>CX650M</model_number>
+            <product_site>https://www.corsair.com/ww/en/Power/cxm-series-2015-config/p/CP-9020103-EU</product_site>
+        </ComponentInfo>
+    </Psu>
+    <Psu>
+        <ComponentInfo>
+            <brand>EVGA</brand>
+            <model_number>500B</model_number>
+            <product_site></product_site>
+        </ComponentInfo>
+    </Psu>
+</root>

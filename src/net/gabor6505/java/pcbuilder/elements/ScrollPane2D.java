@@ -8,7 +8,8 @@ import java.util.List;
 
 // TODO write documentation
 // TODO set darker hover color on JScrollBars on MacOS
-public class ScrollPane2D extends JScrollPane implements MouseWheelListener, MouseListener, KeyListener, ComponentListener {
+// TODO reimplement arrow key navigation properly
+public class ScrollPane2D extends JScrollPane implements MouseWheelListener, MouseListener, /*KeyListener,*/ ComponentListener {
 
     private final ScrollablePanel outerPanel;
     private final List<ScrollPanel> innerScrollPanels = new ArrayList<>();
@@ -18,7 +19,11 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
     // Handle scrolling of outer panel
     private final MouseWheelListener outerWheelListener = e -> {
         //System.out.println("Outer scroll pane needs scrolling");
-        getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 8);
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 32);
+        } else {
+            getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 8);
+        }
     };
 
     public ScrollPane2D(int windowWidth, int windowHeight) {
@@ -28,7 +33,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
         setBorder(null);
 
         addMouseWheelListener(outerWheelListener);
-        addKeyListener(this);
+        //addKeyListener(this);
 
         // Setup outer scrollable panel
         outerPanel = new ScrollablePanel();
@@ -56,6 +61,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
         innerScrollPanel.getScrollPane().addComponentListener(this);
         innerScrollPanel.getScrollPane().addMouseWheelListener(this);
         innerScrollPanel.getScrollPane().addMouseListener(this);
+        innerScrollPanel.getScrollPane().getViewport().setBackground(Color.WHITE);
 
         // Fill in the horizontal scrollable panel with the components specified, aligning in X axis
         for (JComponent comp : components) {
@@ -138,7 +144,11 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
             innerScrollPane.getHorizontalScrollBar().setValue(innerScrollPane.getHorizontalScrollBar().getValue() + e.getWheelRotation() * 8);
         } else {
             //System.out.println("Outer scroll pane needs scrolling");
-            getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 8);
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 32);
+            } else {
+                getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 8);
+            }
         }
 
         /*if (e.isShiftDown() || !getVerticalScrollBar().isVisible()) {
@@ -198,7 +208,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
 
     }
 
-    @Override
+    /*@Override
     public void keyTyped(KeyEvent e) {
 
     }
@@ -220,7 +230,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
+    }*/
 
     @Override
     public void mouseClicked(MouseEvent e) {

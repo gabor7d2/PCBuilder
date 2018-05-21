@@ -40,16 +40,6 @@ public final class Format {
         return formatUnitValue(value, units, true);
     }
 
-    public static String formatGeneration(String brand, short generation) {
-        switch (brand) {
-            case "Intel":
-                return generation + "th Generation";
-            case "AMD":
-            default:
-                return String.valueOf(generation);
-        }
-    }
-
     public static String formatBoolean(boolean bool) {
         return bool ? "Yes" : "No";
     }
@@ -62,11 +52,6 @@ public final class Format {
     public static String formatUnitValueDefault(String value, String[] units) {
         double convertedValue = Double.parseDouble(value);
         return formatUnitValueDefault(convertedValue, units);
-    }
-
-    public static String formatGeneration(String brand, String generation) {
-        short convertedGeneration = Short.parseShort(generation);
-        return formatGeneration(brand, convertedGeneration);
     }
 
     public static String formatBoolean(String bool) {

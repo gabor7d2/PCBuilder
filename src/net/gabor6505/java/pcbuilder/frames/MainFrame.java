@@ -1,24 +1,20 @@
 package net.gabor6505.java.pcbuilder.frames;
 
-import net.gabor6505.java.pcbuilder.components.Cpu;
-import net.gabor6505.java.pcbuilder.components.Motherboard;
-import net.gabor6505.java.pcbuilder.components.Ram;
+import net.gabor6505.java.pcbuilder.components.*;
 import net.gabor6505.java.pcbuilder.elements.ComparisonPane;
 import net.gabor6505.java.pcbuilder.elements.ComponentCategory;
+import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.NodeList;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 import net.gabor6505.java.pcbuilder.xml.XmlParser;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.List;
 
 // TODO document classes
 // TODO auto sizing label
 // TODO make horizontal scrollbars hover over content and hide when mouse is not over it or after a bit of time the mouse has not moved
-public class MainFrame extends JFrame implements KeyListener {
+public class MainFrame extends JFrame {
 
     private final static int WIDTH = 800;
     private final static int HEIGHT = 720;
@@ -34,6 +30,7 @@ public class MainFrame extends JFrame implements KeyListener {
 
     public MainFrame() {
         super();
+        setLookAndFeel();
         comparisonPane = new ComparisonPane(WIDTH, HEIGHT, this);
         init();
     }
@@ -41,16 +38,24 @@ public class MainFrame extends JFrame implements KeyListener {
     private void init() {
         setTitle("PC Builder");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        //setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
+        comparisonPane.addCategory(new ComponentCategory("Motherboard"));
+        comparisonPane.addCategory(new ComponentCategory("CPU"));
+        comparisonPane.addCategory(new ComponentCategory("RAM"));
+        comparisonPane.addCategory(new ComponentCategory("GPU", "Graphics Card"));
+        comparisonPane.addCategory(new ComponentCategory("PSU", "Power Supply"));
+
+        comparisonPane.disableCategory("Graphics Card");
+        GenericComponent.clear();
+
+        setSize(WIDTH, HEIGHT);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-            /*UIDefaults defaults = UIManager.getLookAndFeel().getDefaults();
-            for (Object value : defaults.values()) {
-                System.out.println(value);
-            }*/
         } catch (Exception ignored) {
             try {
                 for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -62,15 +67,6 @@ public class MainFrame extends JFrame implements KeyListener {
             } catch (Exception ignored2) {
             }
         }
-
-        comparisonPane.addCategory(new ComponentCategory("Motherboard", Motherboard.getMotherboardList()));
-        comparisonPane.addCategory(new ComponentCategory("CPU", Cpu.getCpuList()));
-        comparisonPane.addCategory(new ComponentCategory("RAM", Ram.getRamList()));
-
-        setSize(WIDTH, HEIGHT);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        revalidate();
     }
 
     public static List<String> getFormFactors() {
@@ -81,21 +77,7 @@ public class MainFrame extends JFrame implements KeyListener {
         for (String formFact : formFactors) {
             if (formFact.equals(formFactor)) return formFact;
         }
+        new TypeNotPresentException("Form factor \"" + formFactor + "\" is not registered in form_factors.xml").printStackTrace();
         return null;
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }

@@ -1,5 +1,6 @@
 package net.gabor6505.java.pcbuilder.types;
 
+import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.*;
 
 import java.util.ArrayList;
@@ -51,11 +52,13 @@ public class ConnectivityType {
     }
 
     public static ConnectivityType getConnectivityType(String category, String typeName, String location) {
+        //System.out.println(connectivityTypes.size());
         for (ConnectivityType type : connectivityTypes) {
             if (type.getCategory().equals(category)
                     && type.getLocation().equals(location)
                     && type.getTypeName().equals(typeName)) return type;
         }
+        //new TypeNotPresentException("Connectivity Type [" + category + ", " + typeName + ", " + location + "] is not registered in " + CONTRACT.getFileName()).printStackTrace();
         return null;
     }
 

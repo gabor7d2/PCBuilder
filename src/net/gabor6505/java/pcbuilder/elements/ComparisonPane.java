@@ -47,6 +47,7 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener {
             JCheckBox checkBox = new JCheckBox(category.getName());
             checkBox.setSelected(true);
             checkBox.setForeground(Color.WHITE);
+            checkBox.setBackground(Color.DARK_GRAY);
             checkBox.setBorder(BorderFactory.createMatteBorder(0, 8, 0, 8, Color.DARK_GRAY));
             checkBox.addActionListener(this);
             headerPanel.add(checkBox);
@@ -68,6 +69,20 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener {
             categoryIndexMap.remove(categoryName);
             categoryMap.remove(index);
         }
+    }
+
+    public void enableCategory(String categoryName) {
+        JCheckBox cb = findCheckBoxByName(categoryName);
+        if (cb == null) return;
+        if (!cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
+        cb.setSelected(true);
+    }
+
+    public void disableCategory(String categoryName) {
+        JCheckBox cb = findCheckBoxByName(categoryName);
+        if (cb == null) return;
+        if (cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
+        cb.setSelected(false);
     }
 
     private JCheckBox findCheckBoxByName(String categoryName) {

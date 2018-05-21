@@ -1,6 +1,6 @@
 package net.gabor6505.java.pcbuilder.types;
 
-import net.gabor6505.java.pcbuilder.xml.Node;
+import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.NodeList;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 import net.gabor6505.java.pcbuilder.xml.XmlParser;
@@ -44,6 +44,7 @@ public class Brand {
         for (Brand brand : brands) {
             if (brand.getName().equals(brandName)) return brand;
         }
+        new TypeNotPresentException("Brand \"" + brandName + "\" is not registered in " + CONTRACT.getFileName()).printStackTrace();
         return null;
     }
 

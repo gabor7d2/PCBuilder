@@ -1,5 +1,8 @@
 package net.gabor6505.java.pcbuilder.xml;
 
+import net.gabor6505.java.pcbuilder.components.Component;
+import net.gabor6505.java.pcbuilder.utils.Utils;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,12 +40,13 @@ public class XmlContract {
         this.folder = folder;
         this.fileName = fileName;
         this.componentName = componentName;
-        this.nodeNames = nodeNames;
+        if (nodeNames == null) this.nodeNames = new String[0];
+        else this.nodeNames = nodeNames;
         this.dataHandler = dataHandler;
     }
 
     public XmlContract(Folder folder, String fileName, IXmlComponentBuilder dataHandler) {
-        this(folder, fileName, "", null, dataHandler);
+        this(folder, fileName, "", new String[0], dataHandler);
     }
 
     public XmlContract(Folder folder, String fileName) {
@@ -69,15 +73,13 @@ public class XmlContract {
         return dataHandler;
     }
 
-    public void processData(Node currentNode, ComponentProperties properties) {
+    public void processData(Node currentNode, ComponentProperties properties, List<Component> list) {
         if (dataHandler == null) return;
-        dataHandler.processData(currentNode, properties);
+        dataHandler.processData(currentNode, properties, list);
     }
 
     public String getTrimmedFileName() {
-        if (getFileName().contains(".")) {
-            return getFileName().substring(0, getFileName().lastIndexOf('.'));
-        } else return getFileName();
+        return Utils.removeExtension(getFileName());
     }
 
     public List<File> getFiles(boolean scanMoreFiles) {

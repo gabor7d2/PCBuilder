@@ -1,6 +1,7 @@
 package net.gabor6505.java.pcbuilder.elements;
 
 import net.gabor6505.java.pcbuilder.components.Component;
+import net.gabor6505.java.pcbuilder.components.GenericComponent;
 import net.gabor6505.java.pcbuilder.utils.Utils;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class ComponentCategory {
 
-    private final static Dimension defaultPanelSize = new Dimension(128, 188);
+    private final static Dimension defaultPanelSize = new Dimension(128, 180);
 
     private final String name;
 
@@ -37,6 +38,14 @@ public class ComponentCategory {
 
     public ComponentCategory(String categoryName, List components) {
         this(categoryName, components, defaultPanelSize, defaultPanelSize);
+    }
+
+    public ComponentCategory(String typeName) {
+        this(typeName, GenericComponent.getComponents(typeName), defaultPanelSize, defaultPanelSize);
+    }
+
+    public ComponentCategory(String typeName, String displayName) {
+        this(displayName, GenericComponent.getComponents(typeName), defaultPanelSize, defaultPanelSize);
     }
 
     public String getName() {
@@ -71,7 +80,7 @@ public class ComponentCategory {
 
             setBorder(BorderFactory.createMatteBorder(32, 12, 32, 12, getBackground()));
 
-            String filePath = XmlContract.Folder.CATEGORY_IMAGES.getValue() + categoryName + ".png";
+            String filePath = XmlContract.Folder.CATEGORY_IMAGES.getValue() + categoryName.replace(' ', '_') + ".png";
             ImageLabel imageLabel = new ImageLabel(filePath, 80, 80, this);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -98,10 +107,12 @@ public class ComponentCategory {
 
             JRadioButton radioButton = new JRadioButton();
             radioButton.setHorizontalAlignment(SwingConstants.CENTER);
+            radioButton.setBackground(Color.WHITE);
             group.add(radioButton);
             add(radioButton);
 
             ImageLabel image = new ImageLabel(componentInfo.getImagePath(), 88, 88, this);
+            image.setBackground(Color.WHITE);
             image.setBorder(Color.WHITE, 8);
 
             JPanel textPanel = new JPanel();
@@ -112,11 +123,13 @@ public class ComponentCategory {
             JLabel brand = new JLabel(componentInfo.getBrandName());
             brand.setFont(new Font(brand.getFont().getName(), Font.BOLD, 13));
             brand.setAlignmentX(CENTER_ALIGNMENT);
+            brand.setBackground(Color.WHITE);
             textPanel.add(brand);
 
             JLabel modelNumber = new JLabel(componentInfo.getModelNumber());
             modelNumber.setFont(new Font(modelNumber.getFont().getName(), Font.PLAIN, 13));
             modelNumber.setAlignmentX(CENTER_ALIGNMENT);
+            modelNumber.setBackground(Color.WHITE);
             textPanel.add(modelNumber);
 
             boolean firstInfo = true;
@@ -124,13 +137,14 @@ public class ComponentCategory {
                 JLabel extraInfo = new JLabel(info);
                 extraInfo.setFont(new Font(extraInfo.getFont().getName(), Font.PLAIN, 11));
                 extraInfo.setAlignmentX(CENTER_ALIGNMENT);
+                extraInfo.setBackground(Color.WHITE);
                 textPanel.add(extraInfo);
-                Utils.fixSize(this, getWidth(), getHeight() + extraInfo.getMinimumSize().height);
 
                 if (firstInfo) {
                     firstInfo = false;
                     extraInfo.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.WHITE));
                 }
+                Utils.adjustHeight(this, extraInfo);
             }
         }
 
