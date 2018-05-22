@@ -9,8 +9,6 @@ import java.util.List;
 
 public class Cpu extends Component {
 
-    public final static String[] NODE_NAMES = new String[]{"generation", "unlocked", "cores", "threads", "base_frequency_mhz", "turbo_frequency_mhz", "ram_max_mb", "tdp_w", "socket"};
-
     public final static IXmlComponentBuilder DATA_HANDLER = (cpu, properties, list) -> {
         List<String> cacheNodeValues = cpu.getNode("caches").getNodesContent("cache_mb");
         double[] caches = new double[cacheNodeValues.size()];

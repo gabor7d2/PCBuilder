@@ -1,15 +1,18 @@
 package net.gabor6505.java.pcbuilder.elements;
 
+import net.gabor6505.java.pcbuilder.components.GenericComponent;
+import net.gabor6505.java.pcbuilder.components.StateChangeListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class ComparisonPane extends ScrollPane2D implements ActionListener {
+public class ComparisonPane extends ScrollPane2D implements ActionListener, StateChangeListener {
 
     private final Map<String, Integer> categoryIndexMap = new HashMap<>();
-    private final Map<Integer, ComponentCategory> categoryMap = new HashMap<>();
 
     private final JPanel mainPanel;
     private final JPanel headerPanel;
@@ -27,6 +30,7 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener {
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
         if (frame != null) frame.setContentPane(mainPanel);
+        GenericComponent.addStateChangeListener(this);
     }
 
     public ComparisonPane(int windowWidth, int windowHeight) {
@@ -39,12 +43,11 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener {
 
     public int addCategory(ComponentCategory category) {
         int index;
-        if (!categoryIndexMap.containsKey(category.getName())) {
+        if (!categoryIndexMap.containsKey(category.getDisplayName())) {
             index = addRow(category.getItemComponents(), category.getPreviewPanel());
-            categoryIndexMap.put(category.getName(), index);
-            categoryMap.put(index, category);
+            categoryIndexMap.put(category.getDisplayName(), index);
 
-            JCheckBox checkBox = new JCheckBox(category.getName());
+            JCheckBox checkBox = new JCheckBox(category.getDisplayName());
             checkBox.setSelected(true);
             checkBox.setForeground(Color.WHITE);
             checkBox.setBackground(Color.DARK_GRAY);
@@ -52,11 +55,12 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener {
             checkBox.addActionListener(this);
             headerPanel.add(checkBox);
         } else {
-            index = categoryIndexMap.get(category.getName());
+            index = categoryIndexMap.get(category.getDisplayName());
             clearRow(index);
             setPreviewPanel(index, category.getPreviewPanel());
             addComponents(index, category.getItemComponents());
         }
+        headerPanel.revalidate();
         return index;
     }
 
@@ -65,24 +69,28 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener {
             int index = categoryIndexMap.get(categoryName);
             removeRow(index);
             headerPanel.remove(findCheckBoxByName(categoryName));
+            headerPanel.revalidate();
 
             categoryIndexMap.remove(categoryName);
-            categoryMap.remove(index);
         }
     }
 
     public void enableCategory(String categoryName) {
-        JCheckBox cb = findCheckBoxByName(categoryName);
-        if (cb == null) return;
-        if (!cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
-        cb.setSelected(true);
+        EventQueue.invokeLater(() -> {
+            JCheckBox cb = findCheckBoxByName(categoryName);
+            if (cb == null) return;
+            if (!cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
+            cb.setSelected(true);
+        });
     }
 
     public void disableCategory(String categoryName) {
-        JCheckBox cb = findCheckBoxByName(categoryName);
-        if (cb == null) return;
-        if (cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
-        cb.setSelected(false);
+        EventQueue.invokeLater(() -> {
+            JCheckBox cb = findCheckBoxByName(categoryName);
+            if (cb == null) return;
+            if (cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
+            cb.setSelected(false);
+        });
     }
 
     private JCheckBox findCheckBoxByName(String categoryName) {
@@ -99,5 +107,20 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int index = categoryIndexMap.get(e.getActionCommand());
         toggleRowVisible(index);
+    }
+
+    @Override
+    public void loaded(String type, String displayName, List<net.gabor6505.java.pcbuilder.components.Component> affectedComponents) {
+        addCategory(new ComponentCategory(type, displayName, affectedComponents));
+    }
+
+    @Override
+    public void reloaded(String type, String displayName, List<net.gabor6505.java.pcbuilder.components.Component> affectedComponents) {
+        addCategory(new ComponentCategory(type, displayName, affectedComponents));
+    }
+
+    @Override
+    public void removed(String type) {
+        removeCategory(type);
     }
 }

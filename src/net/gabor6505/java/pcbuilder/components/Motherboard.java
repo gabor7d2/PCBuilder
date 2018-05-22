@@ -9,9 +9,6 @@ import java.util.List;
 
 public class Motherboard extends Component {
 
-    // TODO put all classes' node names into xml file
-    public final static String[] NODE_NAMES = new String[]{"form_factor", "chipset", "ram_slots", "ram_max_mb", "max_pcie_version"};
-
     public final static IXmlComponentBuilder DATA_HANDLER = (mobo, properties, list) -> {
         CpuPlatform cpuPlatform = CpuPlatform.getCpuPlatform(mobo.getNode("CpuType"));
 

@@ -1,92 +1,144 @@
 package net.gabor6505.java.pcbuilder.components;
 
-import net.gabor6505.java.pcbuilder.elements.ComparisonPane;
-import net.gabor6505.java.pcbuilder.elements.ComponentCategory;
-import net.gabor6505.java.pcbuilder.types.Brand;
 import net.gabor6505.java.pcbuilder.xml.*;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class GenericComponent {
 
-    private static ComparisonPane pane;
+    private final static List<StateChangeListener> listeners = new ArrayList<>();
 
     private final static Map<String, List<Component>> components = new HashMap<>();
 
     private final static Map<String, String[]> nodeNames = new HashMap<>();
     private final static Map<String, IXmlComponentBuilder> dataHandlers = new HashMap<>();
 
-    public static void setPane(ComparisonPane pane) {
-        GenericComponent.pane = pane;
-    }
-
     public static Map<String, List<Component>> getComponentMap() {
         return components;
     }
 
     public static List<Component> getComponents(String type) {
-        if (!components.containsKey(type)) {
+        /*if (!components.containsKey(type)) {
             load(type);
-        }
+        }*/
         return components.get(type);
     }
 
-    public static void removeComponents(String type) {
-        components.remove(type);
-    }
+    private static void load(String type, String displayName, String[] nodeNames, IXmlComponentBuilder dataHandler, String className, boolean reload) {
+        EventQueue.invokeLater(() -> {
+            String[] nodeNames2 = nodeNames;
+            IXmlComponentBuilder dataHandler2 = dataHandler;
 
-    public static void clear() {
-        components.clear();
-    }
+            String fileName = type.toLowerCase() + "s.xml";
+            components.put(type, new ArrayList<>());
 
-    public static void load(String type, String[] nodeNames, IXmlComponentBuilder dataHandler) {
-        String fileName = type.toLowerCase() + "s.xml";
-        components.put(type, new ArrayList<>());
-
-        try {
-            Class compClass = Class.forName(GenericComponent.class.getPackage().getName() + "." + firstLetterUppercase(type));
             try {
-                nodeNames = (String[]) compClass.getField("NODE_NAMES").get(null);
-            } catch (Exception ignored) { }
-            dataHandler = (IXmlComponentBuilder) compClass.getField("DATA_HANDLER").get(null);
-        } catch (Exception ignored) {
-        }
+                Class compClass = Class.forName(GenericComponent.class.getPackage().getName() + "." + (className == null ? firstLetterUppercase(type) : className));
+                try {
+                    nodeNames2 = (String[]) compClass.getField("NODE_NAMES").get(null);
+                } catch (Exception ignored) {
+                }
+                dataHandler2 = (IXmlComponentBuilder) compClass.getField("DATA_HANDLER").get(null);
+            } catch (Exception ignored) {
+            }
 
-        if (dataHandler == null) {
-            dataHandler = (currentNode, properties, list) -> list.add(new Component(currentNode.getComponentInfo(), properties, fileName));
-        }
+            if (dataHandler2 == null) {
+                dataHandler2 = (currentNode, properties, list) -> list.add(new Component(currentNode.getComponentInfo(), properties, fileName));
+            }
 
-        dataHandlers.put(type, dataHandler);
-        GenericComponent.nodeNames.put(type, nodeNames);
+            dataHandlers.put(type, dataHandler2);
+            GenericComponent.nodeNames.put(type, nodeNames2);
 
-        XmlContract contract = new XmlContract(XmlContract.Folder.COMPONENTS, fileName, firstLetterUppercase(type), nodeNames, dataHandler);
-        XmlParser.parseXmlComponents(contract, components.get(type));
+            XmlContract contract = new XmlContract(XmlContract.Folder.COMPONENTS, fileName, firstLetterUppercase(type), nodeNames2, dataHandler2);
+            XmlParser.parseXmlComponents(contract, components.get(type));
+            if (!reload) {
+                for (StateChangeListener l : listeners) {
+                    l.loaded(type, displayName, components.get(type));
+                }
+            } else {
+                for (StateChangeListener l : listeners) {
+                    l.reloaded(type, displayName, components.get(type));
+                }
+            }
+        });
     }
 
-    public static void load(String type, String[] nodeNames) {
-        load(type, nodeNames, null);
+    public static void autoLoad() {
+        NodeList types = XmlParser.parseXml(XmlContract.Folder.COMPONENTS, "NODE_NAMES.xml").getNodes("Component");
+        for (Node type : types) {
+            String[] nodeNames = type.getNodesContent("NodeName").toArray(new String[0]);
+
+            String typeName = type.getNodeAttributeContent("name");
+            String displayName = type.getNodeAttributeContent("displayName");
+
+            if (displayName == null) displayName = typeName;
+            String className = type.getNodeAttributeContent("className");
+
+            load(typeName, displayName, nodeNames, null, className, false);
+        }
+    }
+
+    private static void load(String type, String displayName, String[] nodeNames, IXmlComponentBuilder dataHandler, boolean reload) {
+        load(type, displayName, nodeNames, dataHandler, null, reload);
+    }
+
+    public static void load(String type, String displayName, String[] nodeNames, IXmlComponentBuilder dataHandler) {
+        load(type, displayName, nodeNames, dataHandler, false);
+    }
+
+    public static void load(String type, String displayName, String[] nodeNames) {
+        load(type, displayName, nodeNames, null);
+    }
+
+    public static void load(String type, String displayName) {
+        load(type, displayName, null, null);
     }
 
     public static void load(String type) {
-        load(type, null, null);
+        load(type, type, null);
     }
 
-    public static List<Component> reload(String type) {
-        if (components.containsKey(type)) {
-            load(type, nodeNames.get(type), dataHandlers.get(type));
-        } else load(type, null, null);
-        return getComponents(type);
+    public static void reload(String type) {
+        EventQueue.invokeLater(() -> {
+            if (components.containsKey(type)) {
+                load(type, type, nodeNames.get(type), dataHandlers.get(type), true);
+            }
+        });
     }
 
     public static void reload() {
-        if (pane != null) pane.removeAllRows();
         for (String type : components.keySet()) {
-            load(type, nodeNames.get(type), dataHandlers.get(type));
+            load(type, type, nodeNames.get(type), dataHandlers.get(type));
         }
+    }
+
+    public static void remove(String type) {
+        EventQueue.invokeLater(() -> {
+            components.remove(type);
+            for (StateChangeListener l : listeners) {
+                l.removed(type);
+            }
+        });
+    }
+
+    public static void clear() {
+        EventQueue.invokeLater(() -> {
+            for (String type : components.keySet()) {
+                remove(type);
+            }
+            nodeNames.clear();
+            dataHandlers.clear();
+        });
+    }
+
+    public static void addStateChangeListener(StateChangeListener l) {
+        listeners.add(l);
+    }
+
+    public static void removeStateChangeListener(StateChangeListener l) {
+        listeners.remove(l);
     }
 
     private static String firstLetterUppercase(String input) {

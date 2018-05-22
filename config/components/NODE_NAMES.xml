@@ -1,0 +1,27 @@
+<root>
+    <Component name="Motherboard" className="Motherboard">
+        <NodeName>form_factor</NodeName>
+        <NodeName>chipset</NodeName>
+        <NodeName>ram_slots</NodeName>
+        <NodeName>ram_max_mb</NodeName>
+        <NodeName>max_pcie_version</NodeName>
+    </Component>
+    <Component name="CPU" className="Cpu">
+        <NodeName>generation</NodeName>
+        <NodeName>unlocked</NodeName>
+        <NodeName>cores</NodeName>
+        <NodeName>threads</NodeName>
+        <NodeName>base_frequency_mhz</NodeName>
+        <NodeName>turbo_frequency_mhz</NodeName>
+        <NodeName>ram_max_mb</NodeName>
+        <NodeName>tdp_w</NodeName>
+        <NodeName>socket</NodeName>
+    </Component>
+    <Component name="RAM" className="Ram">
+        <NodeName>capacity_per_piece_mb</NodeName>
+        <NodeName>count</NodeName>
+        <NodeName>latency</NodeName>
+    </Component>
+    <Component name="GPU" displayName="Graphics Card"/>
+    <Component name="PSU" displayName="Power Supply"/>
+</root>

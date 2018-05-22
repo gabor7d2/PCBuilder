@@ -9,6 +9,7 @@ import net.gabor6505.java.pcbuilder.xml.XmlContract;
 import net.gabor6505.java.pcbuilder.xml.XmlParser;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 // TODO document classes
@@ -33,27 +34,10 @@ public class MainFrame extends JFrame {
         setLookAndFeel();
         comparisonPane = new ComparisonPane(WIDTH, HEIGHT, this);
         init();
+        loadComponents();
     }
 
-    private void init() {
-        setTitle("PC Builder");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        comparisonPane.addCategory(new ComponentCategory("Motherboard"));
-        comparisonPane.addCategory(new ComponentCategory("CPU"));
-        comparisonPane.addCategory(new ComponentCategory("RAM"));
-        comparisonPane.addCategory(new ComponentCategory("GPU", "Graphics Card"));
-        comparisonPane.addCategory(new ComponentCategory("PSU", "Power Supply"));
-
-        comparisonPane.disableCategory("Graphics Card");
-        GenericComponent.clear();
-
-        setSize(WIDTH, HEIGHT);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-
-    public void setLookAndFeel() {
+    private void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ignored) {
@@ -67,6 +51,21 @@ public class MainFrame extends JFrame {
             } catch (Exception ignored2) {
             }
         }
+    }
+
+    private void init() {
+        setTitle("PC Builder");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        setSize(WIDTH, HEIGHT);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        revalidate();
+    }
+
+    private void loadComponents() {
+        GenericComponent.autoLoad();
+        comparisonPane.disableCategory("Graphics Card");
     }
 
     public static List<String> getFormFactors() {

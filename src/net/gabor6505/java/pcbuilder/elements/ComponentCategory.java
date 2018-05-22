@@ -17,39 +17,54 @@ public class ComponentCategory {
     private final static Dimension defaultPanelSize = new Dimension(128, 180);
 
     private final String name;
+    private final String displayName;
 
     private final CategoryPreview preview;
     private final List<CategoryItem> items = new ArrayList<>();
 
     private final ButtonGroup buttonGroup = new ButtonGroup(true);
 
-    public ComponentCategory(String categoryName, List components, Dimension previewPanelSize, Dimension itemSize) {
+    public ComponentCategory(String categoryName, String displayName, List components, Dimension previewPanelSize, Dimension itemSize) {
         name = categoryName;
-        preview = new CategoryPreview(categoryName, previewPanelSize);
+        this.displayName = displayName;
+        preview = new CategoryPreview(displayName, previewPanelSize);
+        if (components == null) components = new ArrayList();
         for (Object obj : components) {
             Component componentInfo = (Component) obj;
             items.add(new CategoryItem(componentInfo, buttonGroup, itemSize));
         }
     }
 
+    public ComponentCategory(String categoryName, String displayName, List components, Dimension panelsSize) {
+        this(categoryName, displayName, components, panelsSize, panelsSize);
+    }
+
+    public ComponentCategory(String categoryName, String displayName, List components) {
+        this(categoryName, displayName, components, defaultPanelSize, defaultPanelSize);
+    }
+
     public ComponentCategory(String categoryName, List components, Dimension panelsSize) {
-        this(categoryName, components, panelsSize, panelsSize);
+        this(categoryName, categoryName, components, panelsSize, panelsSize);
     }
 
     public ComponentCategory(String categoryName, List components) {
-        this(categoryName, components, defaultPanelSize, defaultPanelSize);
+        this(categoryName, categoryName, components, defaultPanelSize, defaultPanelSize);
     }
 
-    public ComponentCategory(String typeName) {
-        this(typeName, GenericComponent.getComponents(typeName), defaultPanelSize, defaultPanelSize);
+    public ComponentCategory(String name) {
+        this(name, GenericComponent.getComponents(name));
     }
 
-    public ComponentCategory(String typeName, String displayName) {
-        this(displayName, GenericComponent.getComponents(typeName), defaultPanelSize, defaultPanelSize);
+    public ComponentCategory(String categoryName, String displayName) {
+        this(categoryName, displayName, GenericComponent.getComponents(categoryName));
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public CategoryPreview getPreview() {

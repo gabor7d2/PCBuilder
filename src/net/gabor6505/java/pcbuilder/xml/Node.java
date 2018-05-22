@@ -34,6 +34,8 @@ public class Node extends NodeList {
     }
 
     public String getNodeAttributeContent(String attrName) {
+        if (node.getAttributes() == null) return null;
+        if (node.getAttributes().getNamedItem(attrName) == null) return null;
         return node.getAttributes().getNamedItem(attrName).getTextContent();
     }
 

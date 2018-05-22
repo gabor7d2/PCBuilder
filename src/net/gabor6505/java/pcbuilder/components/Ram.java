@@ -9,8 +9,6 @@ import java.util.List;
 
 public class Ram extends Component {
 
-    public final static String[] NODE_NAMES = new String[]{"capacity_per_piece_mb", "count", "latency"};
-
     public final static IXmlComponentBuilder DATA_HANDLER = (ram, properties, list) -> {
         RamPlatform ramPlatform = RamPlatform.getRamPlatform(ram.getNode("RamType"));
 

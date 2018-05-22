@@ -44,8 +44,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
         // Set outer panel as the outer scroll pane's (this) viewport
         setViewportView(outerPanel);
         getViewport().setBackground(Color.LIGHT_GRAY);
-        setFocusable(true);
-        requestFocusInWindow();
+        revalidate();
     }
 
     public int addRow(List<JComponent> components) {
@@ -69,6 +68,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
         }
 
         outerPanel.add(innerScrollPanel);
+        innerPanel.revalidate();
         innerScrollPanels.add(innerScrollPanel);
         return innerScrollPanels.indexOf(innerScrollPanel);
     }
@@ -97,6 +97,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
 
     public void addComponent(int index, JComponent comp) {
         ((JPanel) innerScrollPanels.get(index).getScrollPane().getViewport().getView()).add(comp);
+        innerScrollPanels.get(index).getScrollPane().getViewport().getView().revalidate();
     }
 
     public void addComponents(int index, List<JComponent> components) {
@@ -104,6 +105,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
         for (JComponent comp : components) {
             innerPanel.add(comp);
         }
+        innerScrollPanels.get(index).getScrollPane().getViewport().getView().revalidate();
     }
 
     public void clearRow(int index) {
@@ -139,35 +141,23 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         JScrollPane innerScrollPane = (JScrollPane) e.getComponent();
-        if (e.isShiftDown() || !getVerticalScrollBar().isVisible()) {
-            //System.out.println("Inner scroll pane needs scrolling");
-            innerScrollPane.getHorizontalScrollBar().setValue(innerScrollPane.getHorizontalScrollBar().getValue() + e.getWheelRotation() * 8);
+        int wheelRotation;
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            wheelRotation = e.getWheelRotation() * 32;
         } else {
-            //System.out.println("Outer scroll pane needs scrolling");
-            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-                getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 32);
-            } else {
-                getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 8);
-            }
+            wheelRotation = e.getWheelRotation() * 8;
         }
 
-        /*if (e.isShiftDown() || !getVerticalScrollBar().isVisible()) {
+        //System.out.println(wheelRotation + " " + getVerticalScrollBar().getValue() + " " + getVerticalScrollBar().getMinimum() + " " + getVerticalScrollBar().getMaximum());
+        if (e.isShiftDown() || !getVerticalScrollBar().isVisible()
+                /*|| (wheelRotation > 0 && getVerticalScrollBar().getValue() == getVerticalScrollBar().getMaximum())
+                || (wheelRotation < 0 && getVerticalScrollBar().getValue() == getVerticalScrollBar().getMinimum())*/) {
             //System.out.println("Inner scroll pane needs scrolling");
-            if (System.getProperty("os.name").toLowerCase().startsWith("mac os")) {
-                innerScrollPane.getHorizontalScrollBar().setValue(innerScrollPane.getHorizontalScrollBar().getValue() + e.getWheelRotation() * 8);
-            } else {
-                innerScrollPane.setWheelScrollingEnabled(true);
-                dispatchEvent(e);
-            }
+            innerScrollPane.getHorizontalScrollBar().setValue(innerScrollPane.getHorizontalScrollBar().getValue() + wheelRotation);
         } else {
             //System.out.println("Outer scroll pane needs scrolling");
-            if (System.getProperty("os.name").toLowerCase().startsWith("mac os")) {
-                getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + e.getWheelRotation() * 8);
-            } else {
-                innerScrollPane.setWheelScrollingEnabled(false);
-                dispatchEvent(e);
-            }
-        }*/
+            getVerticalScrollBar().setValue(getVerticalScrollBar().getValue() + wheelRotation);
+        }
     }
 
     // Handle the hiding of scroll bars when they are not needed
