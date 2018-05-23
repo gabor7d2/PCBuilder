@@ -1,7 +1,10 @@
 package net.gabor6505.java.pcbuilder.elements;
 
-import net.gabor6505.java.pcbuilder.components.GenericComponent;
+import net.gabor6505.java.pcbuilder.components.ComponentManager;
 import net.gabor6505.java.pcbuilder.components.StateChangeListener;
+import net.gabor6505.java.pcbuilder.types.TypeManager;
+import net.gabor6505.java.pcbuilder.utils.Utils;
+import sun.awt.PeerEvent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +32,17 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener, Stat
         mainPanel.add(this);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
+        EventQueue.invokeLater(() -> {
+            JButton btn = new JButton("Reload");
+            btn.addActionListener(e -> {
+                TypeManager.reload();
+                ComponentManager.reload();
+            });
+            mainPanel.add(btn, BorderLayout.SOUTH);
+        });
+
         if (frame != null) frame.setContentPane(mainPanel);
-        GenericComponent.addStateChangeListener(this);
+        ComponentManager.addStateChangeListener(this);
     }
 
     public ComparisonPane(int windowWidth, int windowHeight) {
@@ -53,7 +65,13 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener, Stat
             checkBox.setBackground(Color.DARK_GRAY);
             checkBox.setBorder(BorderFactory.createMatteBorder(0, 8, 0, 8, Color.DARK_GRAY));
             checkBox.addActionListener(this);
+            checkBox.setVisible(false);
             headerPanel.add(checkBox);
+
+            EventQueue.invokeLater(() -> {
+                checkBox.setVisible(true);
+                //System.out.println(System.currentTimeMillis());
+            });
         } else {
             index = categoryIndexMap.get(category.getDisplayName());
             clearRow(index);
@@ -76,21 +94,23 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener, Stat
     }
 
     public void enableCategory(String categoryName) {
-        EventQueue.invokeLater(() -> {
+        EventQueue eq = Toolkit.getDefaultToolkit().getSystemEventQueue();
+        eq.postEvent(new PeerEvent(Toolkit.getDefaultToolkit(), () -> {
             JCheckBox cb = findCheckBoxByName(categoryName);
             if (cb == null) return;
             if (!cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
             cb.setSelected(true);
-        });
+        }, PeerEvent.LOW_PRIORITY_EVENT));
     }
 
     public void disableCategory(String categoryName) {
-        EventQueue.invokeLater(() -> {
+        EventQueue eq = Toolkit.getDefaultToolkit().getSystemEventQueue();
+        eq.postEvent(new PeerEvent(Toolkit.getDefaultToolkit(), () -> {
             JCheckBox cb = findCheckBoxByName(categoryName);
             if (cb == null) return;
             if (cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
             cb.setSelected(false);
-        });
+        }, PeerEvent.LOW_PRIORITY_EVENT));
     }
 
     private JCheckBox findCheckBoxByName(String categoryName) {

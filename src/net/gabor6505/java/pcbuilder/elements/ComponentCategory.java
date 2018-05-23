@@ -1,7 +1,7 @@
 package net.gabor6505.java.pcbuilder.elements;
 
 import net.gabor6505.java.pcbuilder.components.Component;
-import net.gabor6505.java.pcbuilder.components.GenericComponent;
+import net.gabor6505.java.pcbuilder.components.ComponentManager;
 import net.gabor6505.java.pcbuilder.utils.Utils;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 
@@ -27,11 +27,11 @@ public class ComponentCategory {
     public ComponentCategory(String categoryName, String displayName, List components, Dimension previewPanelSize, Dimension itemSize) {
         name = categoryName;
         this.displayName = displayName;
-        preview = new CategoryPreview(displayName, previewPanelSize);
+        preview = new CategoryPreview(previewPanelSize);
         if (components == null) components = new ArrayList();
         for (Object obj : components) {
             Component componentInfo = (Component) obj;
-            items.add(new CategoryItem(componentInfo, buttonGroup, itemSize));
+            items.add(new CategoryItem(componentInfo, itemSize));
         }
     }
 
@@ -52,11 +52,11 @@ public class ComponentCategory {
     }
 
     public ComponentCategory(String name) {
-        this(name, GenericComponent.getComponents(name));
+        this(name, ComponentManager.getComponents(name));
     }
 
     public ComponentCategory(String categoryName, String displayName) {
-        this(categoryName, displayName, GenericComponent.getComponents(categoryName));
+        this(categoryName, displayName, ComponentManager.getComponents(categoryName));
     }
 
     public String getName() {
@@ -89,17 +89,17 @@ public class ComponentCategory {
 
     public class CategoryPreview extends JPanel {
 
-        public CategoryPreview(String categoryName, Dimension size) {
+        public CategoryPreview(Dimension size) {
             setLayout(new BorderLayout());
             Utils.fixSize(this, size);
 
             setBorder(BorderFactory.createMatteBorder(32, 12, 32, 12, getBackground()));
 
-            String filePath = XmlContract.Folder.CATEGORY_IMAGES.getValue() + categoryName.replace(' ', '_') + ".png";
+            String filePath = XmlContract.Folder.CATEGORY_IMAGES.getValue() + ComponentCategory.this.name.replace(' ', '_') + ".png";
             ImageLabel imageLabel = new ImageLabel(filePath, 80, 80, this);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-            JLabel nameLabel = new JLabel(categoryName);
+            JLabel nameLabel = new JLabel(ComponentCategory.this.displayName);
             nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
             nameLabel.setFont(new Font(nameLabel.getFont().getName(), Font.BOLD, 14));
             add(nameLabel, BorderLayout.SOUTH);
@@ -110,7 +110,7 @@ public class ComponentCategory {
 
         private final Component componentInfo;
 
-        public CategoryItem(Component componentInfo, ButtonGroup group, Dimension size) {
+        public CategoryItem(Component componentInfo, Dimension size) {
             this.componentInfo = componentInfo;
 
             Utils.fixSize(this, size);
@@ -123,7 +123,7 @@ public class ComponentCategory {
             JRadioButton radioButton = new JRadioButton();
             radioButton.setHorizontalAlignment(SwingConstants.CENTER);
             radioButton.setBackground(Color.WHITE);
-            group.add(radioButton);
+            ComponentCategory.this.buttonGroup.add(radioButton);
             add(radioButton);
 
             ImageLabel image = new ImageLabel(componentInfo.getImagePath(), 88, 88, this);

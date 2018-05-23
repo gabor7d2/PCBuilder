@@ -1,12 +1,13 @@
 package net.gabor6505.java.pcbuilder.types;
 
+import net.gabor6505.java.pcbuilder.components.Ram;
 import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RamPlatform {
+public class RamPlatform implements ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "ram_types.xml");
     public final static String[] NODE_NAMES = new String[]{"type", "frequency"};
@@ -14,15 +15,8 @@ public class RamPlatform {
     private final static List<RamPlatform> ramPlatforms = new ArrayList<>(0);
 
     static {
-        NodeList root = XmlParser.parseXml(CONTRACT);
-
-        for (Node type : root.getNodes("type")) {
-            String name = type.getNodeAttributeContent("name");
-
-            for (String frequency : type.getNodesContent("frequency")) {
-                ramPlatforms.add(new RamPlatform(name, Integer.parseInt(frequency)));
-            }
-        }
+        TypeManager.addReloadListener(RamPlatform.class.getName(), new RamPlatform(null, 0));
+        load();
     }
 
     private final String typeName;
@@ -57,5 +51,23 @@ public class RamPlatform {
 
     public static RamPlatform getRamPlatform(Node ramNode) {
         return getRamPlatform(ramNode.getNodesContent(NODE_NAMES));
+    }
+
+    private static void load() {
+        NodeList root = XmlParser.parseXml(CONTRACT);
+
+        for (Node type : root.getNodes("type")) {
+            String name = type.getNodeAttributeContent("name");
+
+            for (String frequency : type.getNodesContent("frequency")) {
+                ramPlatforms.add(new RamPlatform(name, Integer.parseInt(frequency)));
+            }
+        }
+    }
+
+    @Override
+    public void reload() {
+        ramPlatforms.clear();
+        load();
     }
 }

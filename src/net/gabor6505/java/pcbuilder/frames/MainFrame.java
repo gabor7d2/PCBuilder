@@ -1,8 +1,7 @@
 package net.gabor6505.java.pcbuilder.frames;
 
-import net.gabor6505.java.pcbuilder.components.*;
+import net.gabor6505.java.pcbuilder.components.ComponentManager;
 import net.gabor6505.java.pcbuilder.elements.ComparisonPane;
-import net.gabor6505.java.pcbuilder.elements.ComponentCategory;
 import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.NodeList;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
@@ -10,29 +9,22 @@ import net.gabor6505.java.pcbuilder.xml.XmlParser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 // TODO document classes
 // TODO auto sizing label
-// TODO make horizontal scrollbars hover over content and hide when mouse is not over it or after a bit of time the mouse has not moved
 public class MainFrame extends JFrame {
 
     private final static int WIDTH = 800;
     private final static int HEIGHT = 720;
 
-    private final static List<String> formFactors;
-
-    private final ComparisonPane comparisonPane;
-
-    static {
-        NodeList root = XmlParser.parseXml(XmlContract.Folder.TYPES, "form_factors.xml");
-        formFactors = root.getNodesContent("form_factor");
-    }
+    private ComparisonPane comparisonPane;
 
     public MainFrame() {
         super();
         setLookAndFeel();
-        comparisonPane = new ComparisonPane(WIDTH, HEIGHT, this);
+        comparisonPane = new ComparisonPane(WIDTH, HEIGHT, MainFrame.this);
         init();
         loadComponents();
     }
@@ -60,23 +52,10 @@ public class MainFrame extends JFrame {
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
-        revalidate();
     }
 
     private void loadComponents() {
-        GenericComponent.autoLoad();
+        ComponentManager.autoLoad();
         comparisonPane.disableCategory("Graphics Card");
-    }
-
-    public static List<String> getFormFactors() {
-        return formFactors;
-    }
-
-    public static String getFormFactor(String formFactor) {
-        for (String formFact : formFactors) {
-            if (formFact.equals(formFactor)) return formFact;
-        }
-        new TypeNotPresentException("Form factor \"" + formFactor + "\" is not registered in form_factors.xml").printStackTrace();
-        return null;
     }
 }

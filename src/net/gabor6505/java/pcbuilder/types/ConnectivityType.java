@@ -6,23 +6,16 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConnectivityType {
+// TODO Fix getConnectivityType sometimes returning null with no reason
+public class ConnectivityType implements ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "connectivity_types.xml");
 
     private final static List<ConnectivityType> connectivityTypes = new ArrayList<>(0);
 
     static {
-        NodeList root = XmlParser.parseXml(CONTRACT);
-
-        for (Node category : root.getNodes("category")) {
-            String name = category.getNodeAttributeContent("name");
-            String location = category.getNodeAttributeContent("location");
-
-            for (String type : category.getNodesContent("type")) {
-                connectivityTypes.add(new ConnectivityType(name, location, type));
-            }
-        }
+        TypeManager.addReloadListener(ConnectivityType.class.getName(), new ConnectivityType(null, null, null));
+        load();
     }
 
     private final String category;
@@ -68,5 +61,24 @@ public class ConnectivityType {
 
     public static ConnectivityType getConnectivityType(Node connectivityNode) {
         return getConnectivityType(connectivityNode.getNodesContent(Connectivity.NODE_NAMES));
+    }
+
+    private static void load() {
+        NodeList root = XmlParser.parseXml(CONTRACT);
+
+        for (Node category : root.getNodes("category")) {
+            String name = category.getNodeAttributeContent("name");
+            String location = category.getNodeAttributeContent("location");
+
+            for (String type : category.getNodesContent("type")) {
+                connectivityTypes.add(new ConnectivityType(name, location, type));
+            }
+        }
+    }
+
+    @Override
+    public void reload() {
+        connectivityTypes.clear();
+        load();
     }
 }

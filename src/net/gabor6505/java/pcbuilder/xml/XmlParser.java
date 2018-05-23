@@ -1,13 +1,11 @@
 package net.gabor6505.java.pcbuilder.xml;
 
 import net.gabor6505.java.pcbuilder.components.Component;
-import net.gabor6505.java.pcbuilder.components.GenericComponent;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class XmlParser {

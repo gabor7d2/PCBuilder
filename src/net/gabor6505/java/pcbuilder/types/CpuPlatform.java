@@ -6,7 +6,7 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CpuPlatform {
+public class CpuPlatform implements ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "cpu_types.xml");
     public final static String[] NODE_NAMES = new String[]{"brand", "socket"};
@@ -14,19 +14,8 @@ public class CpuPlatform {
     private final static List<CpuPlatform> cpuPlatforms = new ArrayList<>(0);
 
     static {
-        NodeList root = XmlParser.parseXml(CONTRACT);
-
-        for (Node type : root.getNodes("type")) {
-            String brandName = type.getNodeAttributeContent("brand");
-            String prefix = type.getNodeAttributeContent("prefix");
-            Brand brand = Brand.getBrand(brandName);
-
-            if (brand != null) {
-                for (String socket : type.getNodesContent("socket")) {
-                    cpuPlatforms.add(new CpuPlatform(brand, socket, prefix));
-                }
-            }
-        }
+        TypeManager.addReloadListener(CpuPlatform.class.getName(), new CpuPlatform(null, null, null));
+        load();
     }
 
     private final Brand brand;
@@ -83,5 +72,27 @@ public class CpuPlatform {
 
     public static CpuPlatform getCpuPlatform(Node cpuNode) {
         return getCpuPlatform(cpuNode.getNodesContent(NODE_NAMES));
+    }
+
+    private static void load() {
+        NodeList root = XmlParser.parseXml(CONTRACT);
+
+        for (Node type : root.getNodes("type")) {
+            String brandName = type.getNodeAttributeContent("brand");
+            String prefix = type.getNodeAttributeContent("prefix");
+            Brand brand = Brand.getBrand(brandName);
+
+            if (brand != null) {
+                for (String socket : type.getNodesContent("socket")) {
+                    cpuPlatforms.add(new CpuPlatform(brand, socket, prefix));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void reload() {
+        cpuPlatforms.clear();
+        load();
     }
 }

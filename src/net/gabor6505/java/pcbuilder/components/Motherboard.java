@@ -37,7 +37,7 @@ public class Motherboard extends Component {
         this.ramPlatforms = ramPlatforms;
         this.connectivities = connectivities;
 
-        formFactor = MainFrame.getFormFactor(properties.get("form_factor"));
+        formFactor = FormFactor.getFormFactor(properties.get("form_factor"));
     }
 
     public String getFormFactor() {

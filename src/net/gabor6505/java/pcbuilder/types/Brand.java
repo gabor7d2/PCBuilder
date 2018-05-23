@@ -8,18 +8,15 @@ import net.gabor6505.java.pcbuilder.xml.XmlParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Brand {
+public class Brand implements ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "brands.xml");
 
     private final static List<Brand> brands = new ArrayList<>(0);
 
     static {
-        NodeList root = XmlParser.parseXml(CONTRACT);
-
-        for (String brand : root.getAttributesContent("brand", "name")) {
-            brands.add(new Brand(brand));
-        }
+        TypeManager.addReloadListener(Brand.class.getName(), new Brand(null));
+        load();
     }
 
     private final String name;
@@ -50,5 +47,19 @@ public class Brand {
 
     public static Brand getBrand(NodeList componentInfoNode) {
         return getBrand(componentInfoNode.getNodeContent("brand"));
+    }
+
+    private static void load() {
+        NodeList root = XmlParser.parseXml(CONTRACT);
+
+        for (String brand : root.getAttributesContent("brand", "name")) {
+            brands.add(new Brand(brand));
+        }
+    }
+
+    @Override
+    public void reload() {
+        brands.clear();
+        load();
     }
 }

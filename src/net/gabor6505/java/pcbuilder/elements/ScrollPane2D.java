@@ -55,7 +55,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
 
         // Setup inner scroll pane with inner panel in its viewport
         ScrollPanel innerScrollPanel = new ScrollPanel(new JScrollPane(innerPanel), null);
-        innerScrollPanel.getScrollPane().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        innerScrollPanel.getScrollPane().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         innerScrollPanel.getScrollPane().setWheelScrollingEnabled(false);
         innerScrollPanel.getScrollPane().addComponentListener(this);
         innerScrollPanel.getScrollPane().addMouseWheelListener(this);
@@ -67,9 +67,16 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
             innerPanel.add(comp);
         }
 
+        innerScrollPanel.setVisible(false);
+
         outerPanel.add(innerScrollPanel);
-        innerPanel.revalidate();
         innerScrollPanels.add(innerScrollPanel);
+
+        EventQueue.invokeLater(() -> {
+            innerScrollPanel.setVisible(true);
+            //System.out.println(System.currentTimeMillis());
+        });
+
         return innerScrollPanels.indexOf(innerScrollPanel);
     }
 
@@ -166,7 +173,7 @@ public class ScrollPane2D extends JScrollPane implements MouseWheelListener, Mou
         JScrollPane pane = (JScrollPane) e.getComponent();
         ScrollPanel panel = (ScrollPanel) e.getComponent().getParent();
         JScrollPane parentPane = (JScrollPane) e.getComponent().getParent().getParent().getParent().getParent();
-        int subtractValue = 18 + panel.getPreviewPanelWidth();
+        int subtractValue = 15 + panel.getPreviewPanelWidth();
 
         // Check if vertical scrollbar is not visible
         if (!parentPane.getVerticalScrollBar().isVisible()) {

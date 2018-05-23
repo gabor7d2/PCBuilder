@@ -20,42 +20,43 @@ public class ComponentProperties {
 
     public Object getObject(int index) {
         doCheck();
+        if (properties.length < index || index < 0) return null;
         return properties[index];
     }
 
     public String getString(int index) {
         doCheck();
-        if (properties[index] == null) return null;
-        return properties[index].toString();
+        if (getObject(index) == null) return null;
+        return getObject(index).toString();
     }
 
     public boolean getBoolean(int index) {
         doCheck();
-        return Boolean.parseBoolean(properties[index].toString());
+        return Boolean.parseBoolean(getObject(index).toString());
     }
 
     public int getInt(int index) {
         doCheck();
-        if (properties[index] == null) return 0;
-        return Integer.parseInt(properties[index].toString());
+        if (getObject(index) == null) return 0;
+        return Integer.parseInt(getObject(index).toString());
     }
 
     public short getShort(int index) {
         doCheck();
-        if (properties[index] == null) return 0;
-        return Short.parseShort(properties[index].toString());
+        if (getObject(index) == null) return 0;
+        return Short.parseShort(getObject(index).toString());
     }
 
     public double getDouble(int index) {
         doCheck();
-        if (properties[index] == null) return 0;
-        return Double.parseDouble(properties[index].toString());
+        if (getObject(index) == null) return 0;
+        return Double.parseDouble(getObject(index).toString());
     }
 
     public long getLong(int index) {
         doCheck();
-        if (properties[index] == null) return 0;
-        return Long.parseLong(properties[index].toString());
+        if (getObject(index) == null) return 0;
+        return Long.parseLong(getObject(index).toString());
     }
 
     public Object getObject(String key) {
