@@ -1,6 +1,5 @@
 package net.gabor6505.java.pcbuilder.types;
 
-import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.*;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class CpuPlatform implements ReloadListener {
     private final static List<CpuPlatform> cpuPlatforms = new ArrayList<>(0);
 
     static {
-        TypeManager.addReloadListener(CpuPlatform.class.getName(), new CpuPlatform(null, null, null));
+        TypeManager.addReloadListener(CpuPlatform.class.getName(), new CpuPlatform(null, null, null), 1);
         load();
     }
 
@@ -58,7 +57,7 @@ public class CpuPlatform implements ReloadListener {
                 return type;
             }
         }
-        new TypeNotPresentException("Cpu Platform [" + brandName + ", " + socket + "] is not registered in " + CONTRACT.getFileName()).printStackTrace();
+        new TypeNotPresentException("Cpu Platform", CONTRACT, brandName, socket).printStackTrace();
         return null;
     }
 

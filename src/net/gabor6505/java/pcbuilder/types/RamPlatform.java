@@ -1,7 +1,5 @@
 package net.gabor6505.java.pcbuilder.types;
 
-import net.gabor6505.java.pcbuilder.components.Ram;
-import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.*;
 
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ public class RamPlatform implements ReloadListener {
     private final static List<RamPlatform> ramPlatforms = new ArrayList<>(0);
 
     static {
-        TypeManager.addReloadListener(RamPlatform.class.getName(), new RamPlatform(null, 0));
+        TypeManager.addReloadListener(RamPlatform.class.getName(), new RamPlatform(null, 0), 0);
         load();
     }
 
@@ -41,7 +39,7 @@ public class RamPlatform implements ReloadListener {
                 return type;
             }
         }
-        new TypeNotPresentException("Ram Platform [" + typeName + ", " + frequencyMHz + "] is not registered in " + CONTRACT.getFileName()).printStackTrace();
+        new TypeNotPresentException("Ram Platform", CONTRACT, typeName, String.valueOf(frequencyMHz)).printStackTrace();
         return null;
     }
 

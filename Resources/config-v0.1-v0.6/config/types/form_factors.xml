@@ -1,0 +1,6 @@
+<root>
+    <form_factor>EATX</form_factor>
+    <form_factor>ATX</form_factor>
+    <form_factor>Micro-ATX</form_factor>
+    <form_factor>Mini-ITX</form_factor>
+</root>

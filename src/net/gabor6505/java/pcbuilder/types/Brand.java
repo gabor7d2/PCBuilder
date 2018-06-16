@@ -1,6 +1,5 @@
 package net.gabor6505.java.pcbuilder.types;
 
-import net.gabor6505.java.pcbuilder.utils.TypeNotPresentException;
 import net.gabor6505.java.pcbuilder.xml.NodeList;
 import net.gabor6505.java.pcbuilder.xml.XmlContract;
 import net.gabor6505.java.pcbuilder.xml.XmlParser;
@@ -15,7 +14,7 @@ public class Brand implements ReloadListener {
     private final static List<Brand> brands = new ArrayList<>(0);
 
     static {
-        TypeManager.addReloadListener(Brand.class.getName(), new Brand(null));
+        TypeManager.addReloadListener(Brand.class.getName(), new Brand(null), 0);
         load();
     }
 
@@ -29,10 +28,6 @@ public class Brand implements ReloadListener {
         return name;
     }
 
-    public static Brand parsedNode(String nodeName, String nodeContent, List<String> nodeAttributes, List<String> nodeAttributesContent) {
-        return new Brand(nodeAttributesContent.get(0));
-    }
-
     public static List<Brand> getBrands() {
         return brands;
     }
@@ -41,7 +36,7 @@ public class Brand implements ReloadListener {
         for (Brand brand : brands) {
             if (brand.getName().equals(brandName)) return brand;
         }
-        new TypeNotPresentException("Brand \"" + brandName + "\" is not registered in " + CONTRACT.getFileName()).printStackTrace();
+        new TypeNotPresentException("Brand", CONTRACT, brandName).printStackTrace();
         return null;
     }
 

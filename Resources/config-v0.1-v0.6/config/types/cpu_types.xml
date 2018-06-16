@@ -1,0 +1,28 @@
+<root>
+	<type brand="Intel" prefix="LGA">
+        <socket>771</socket>
+        <socket>775</socket>
+        <socket>1150</socket>
+        <socket>1151</socket>
+        <socket>1155</socket>
+        <socket>1156</socket>
+        <socket>1356</socket>
+        <socket>1366</socket>
+        <socket>2011</socket>
+        <socket>2011-3</socket>
+        <socket>2066</socket>
+    </type>
+    <type brand="AMD" prefix="">
+        <socket>AM1</socket>
+        <socket>AM2</socket>
+        <socket>AM2+</socket>
+        <socket>AM3</socket>
+        <socket>AM3+</socket>
+        <socket>AM4</socket>
+        <socket>FM1</socket>
+        <socket>FM2</socket>
+        <socket>FM2+</socket>
+        <socket>TR4</socket>
+        <socket>G34</socket>
+    </type>
+</root>

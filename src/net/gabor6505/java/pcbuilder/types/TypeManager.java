@@ -1,23 +1,29 @@
 package net.gabor6505.java.pcbuilder.types;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TypeManager {
 
     private final static Map<String, ReloadListener> listeners = new HashMap<>();
+    private final static Map<Integer, List<ReloadListener>> listenerPriorities = new HashMap<>();
 
-    public static void addReloadListener(String type, ReloadListener l) {
+    public static void addReloadListener(String type, ReloadListener l, int priority) {
         listeners.put(type, l);
-    }
 
-    public static void removeReloadListener(String type) {
-        listeners.remove(type);
+        if (!listenerPriorities.containsKey(priority)) {
+            listenerPriorities.put(priority, new ArrayList<>());
+        }
+        listenerPriorities.get(priority).add(l);
     }
 
     public static void reload() {
-        for (ReloadListener l : listeners.values()) {
-            l.reload();
+        List<Integer> priorities = new ArrayList<>(listenerPriorities.keySet());
+        Collections.sort(priorities);
+
+        for (int priority : priorities) {
+            for (ReloadListener l : listenerPriorities.get(priority)) {
+                l.reload();
+            }
         }
     }
 }

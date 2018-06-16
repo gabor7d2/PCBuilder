@@ -1,6 +1,6 @@
 package net.gabor6505.java.pcbuilder;
 
-import net.gabor6505.java.pcbuilder.frames.MainFrame;
+import net.gabor6505.java.pcbuilder.gui.MainFrame;
 
 public class Main {
 

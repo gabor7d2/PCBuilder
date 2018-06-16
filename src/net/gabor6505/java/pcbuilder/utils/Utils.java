@@ -1,5 +1,7 @@
 package net.gabor6505.java.pcbuilder.utils;
 
+import sun.awt.PeerEvent;
+
 import java.awt.*;
 import java.net.URI;
 import java.net.URL;
@@ -7,6 +9,7 @@ import java.net.URL;
 public final class Utils {
 
     private Utils() {
+
     }
 
     public static String replaceSpaces(String inputStr) {
@@ -81,4 +84,18 @@ public final class Utils {
         return false;
     }
 
+    public static void postEvent(long priority, Runnable runnable) {
+        EventQueue eq = Toolkit.getDefaultToolkit().getSystemEventQueue();
+        eq.postEvent(new PeerEvent(Toolkit.getDefaultToolkit(), runnable, priority));
+    }
+
+    public static int countChar(String input, char c) {
+        int counter = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == c) {
+                counter++;
+            }
+        }
+        return counter;
+    }
 }

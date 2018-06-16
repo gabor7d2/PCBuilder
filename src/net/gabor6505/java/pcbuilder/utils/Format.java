@@ -10,6 +10,7 @@ public final class Format {
     public final static String[] WATTS = new String[]{"mW", "W"};
 
     private Format() {
+
     }
 
     private static String formatUnitValue(double value, String[] units, boolean useDefaultUnit) {

@@ -1,6 +1,5 @@
 package net.gabor6505.java.pcbuilder.components;
 
-import net.gabor6505.java.pcbuilder.frames.MainFrame;
 import net.gabor6505.java.pcbuilder.types.*;
 import net.gabor6505.java.pcbuilder.xml.*;
 

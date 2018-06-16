@@ -1,0 +1,34 @@
+<root>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+            <product_site>https://www.hyperxgaming.com/en/memory/fury-ddr4?partnum=HX424C15FB2K2/16</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>4000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+            <product_site>https://www.hyperxgaming.com/en/memory/fury-ddr4?partnum=HX424C15FBK2/8</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>8000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+</root>

@@ -4,18 +4,19 @@ import net.gabor6505.java.pcbuilder.components.Component;
 import net.gabor6505.java.pcbuilder.utils.Utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class XmlContract {
 
     public enum Folder {
-        TYPES (CONFIG_FOLDER + "/types/"),
-        COMPONENTS (CONFIG_FOLDER + "/components/"),
-        COMPONENT_IMAGES(CONFIG_FOLDER + "/component_images/"),
-        CATEGORY_IMAGES (CONFIG_FOLDER + "/component_images/categories/");
+        TYPES ("/types/"),
+        COMPONENTS ("/components/"),
+        COMPONENT_IMAGES("/component_images/"),
+        CATEGORY_IMAGES ("/component_images/categories/");
+
+        private static String profilesFolder = System.getProperty("user.home") + "/.pcbuilder/Profiles";
+        private static String activeProfile = "";
 
         private final String folder;
 
@@ -24,11 +25,17 @@ public class XmlContract {
         }
 
         public String getValue() {
-            return folder;
+            return profilesFolder + "/" + activeProfile + folder;
+        }
+
+        public static void setProfilesFolder(String folderPath) {
+            profilesFolder = folderPath;
+        }
+
+        public static void setActiveProfile(String profileName) {
+            activeProfile = profileName;
         }
     }
-
-    private final static String CONFIG_FOLDER = "./config/";
 
     private final Folder folder;
     private final String fileName;
@@ -101,5 +108,13 @@ public class XmlContract {
         }
 
         return foundFiles;
+    }
+
+    public static void setProfilesFolder(String folderPath) {
+        Folder.setProfilesFolder(folderPath);
+    }
+
+    public static void setActiveProfile(String profileName) {
+        Folder.setActiveProfile(profileName);
     }
 }
