@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static sun.awt.PeerEvent.LOW_PRIORITY_EVENT;
+
 public class ComparisonPane extends ScrollPane2D implements ActionListener, StateChangeListener {
 
     private final Map<String, Integer> categoryIndexMap = new HashMap<>();
@@ -131,7 +133,7 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener, Stat
     }
 
     public void enableCategory(String categoryName) {
-        Utils.postEvent(PeerEvent.LOW_PRIORITY_EVENT, () -> {
+        Utils.postEvent(LOW_PRIORITY_EVENT, () -> {
             JCheckBox cb = findCheckBoxByName(categoryName);
             if (cb == null) return;
             if (!cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
@@ -140,7 +142,7 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener, Stat
     }
 
     public void disableCategory(String categoryName) {
-        Utils.postEvent(PeerEvent.LOW_PRIORITY_EVENT, () -> {
+        Utils.postEvent(LOW_PRIORITY_EVENT, () -> {
             JCheckBox cb = findCheckBoxByName(categoryName);
             if (cb == null) return;
             if (cb.isSelected()) actionPerformed(new ActionEvent(cb, 0, cb.getText()));
@@ -194,9 +196,11 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener, Stat
         MainFrame.setHoveredHorizontalScrollPane(null);
     }
 
+    // TODO recycle components instead of removing and readding them
     public void reloadEverything() {
         removeAllRows();
         headerPanel.removeAll();
+        mainPanel.revalidate();
         categoryIndexMap.clear();
 
         //profileManager.reload();
