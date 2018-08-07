@@ -7,7 +7,7 @@ import net.gabor6505.java.pcbuilder.xml.XmlParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormFactor implements ReloadListener {
+public class FormFactor implements TypeManager.ReloadListener {
 
     private final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "form_factors.xml");
 

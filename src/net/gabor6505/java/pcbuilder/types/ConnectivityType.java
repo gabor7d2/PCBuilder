@@ -5,7 +5,7 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConnectivityType implements ReloadListener {
+public class ConnectivityType implements TypeManager.ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "connectivity_types.xml");
 

@@ -1,0 +1,61 @@
+<root>
+    <Component name="Motherboard">
+        <category_url>https://www.arukereso.hu/alaplap-c3128/</category_url>
+        <NodeName>form_factor</NodeName>
+        <NodeName>chipset</NodeName>
+        <NodeName>ram_slots</NodeName>
+        <NodeName>ram_max_mb</NodeName>
+        <NodeName>max_pcie_version</NodeName>
+    </Component>
+    <Component name="CPU">
+        <category_url>https://www.arukereso.hu/processzor-c3139/</category_url>
+        <NodeName>generation</NodeName>
+        <NodeName>unlocked</NodeName>
+        <NodeName>cores</NodeName>
+        <NodeName>threads</NodeName>
+        <NodeName>base_frequency_mhz</NodeName>
+        <NodeName>turbo_frequency_mhz</NodeName>
+        <NodeName>ram_max_mb</NodeName>
+        <NodeName>tdp_w</NodeName>
+        <NodeName>socket</NodeName>
+    </Component>
+    <Component name="RAM">
+        <category_url>https://www.arukereso.hu/memoria-modul-c3577/</category_url>
+        <NodeName>capacity_per_piece_mb</NodeName>
+        <NodeName>count</NodeName>
+        <NodeName>latency</NodeName>
+    </Component>
+    <Component name="GPU" displayName="Graphics Card" enabledAtStart="true">
+        <category_url>https://www.arukereso.hu/videokartya-c3142/</category_url>
+        <NodeName>base_frequency_mhz</NodeName>
+        <NodeName>boost_frequency_mhz</NodeName>
+        <NodeName>vram_amount_mb</NodeName>
+        <NodeName>vram_frequency_mhz</NodeName>
+        <NodeName>cuda_core_amount</NodeName>
+        <NodeName>memory_bus_width</NodeName>
+        <NodeName>output_port_amount</NodeName>
+    </Component>
+    <Component name="SSD" className="Storage" enabledAtStart="false">
+        <category_url>https://ssd-meghajto.arukereso.hu/</category_url>
+        <NodeName>capacity_mb</NodeName>
+    </Component>
+    <Component name="HDD" className="Storage">
+        <category_url>https://www.arukereso.hu/merevlemez-c3103/</category_url>
+        <NodeName>capacity_mb</NodeName>
+    </Component>
+    <Component name="Cooler" displayName="Air Cooler">
+        <category_url>https://www.arukereso.hu/szamitogep-huto-c3094/</category_url>
+    </Component>
+    <Component name="Water Cooler" enabledAtStart="false">
+        <category_url>https://www.arukereso.hu/szamitogep-huto-c3094/</category_url>
+    </Component>
+    <Component name="PSU" displayName="Power Supply">
+        <category_url>https://www.arukereso.hu/tapegyseg-c3158/</category_url>
+        <NodeName>performance_w</NodeName>
+        <NodeName>efficiency_rating</NodeName>
+        <NodeName>modularity</NodeName>
+    </Component>
+    <Component name="Case">
+        <category_url>https://www.arukereso.hu/szamitogep-haz-c3085/</category_url>
+    </Component>
+</root>

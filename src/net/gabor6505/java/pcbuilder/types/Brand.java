@@ -7,7 +7,7 @@ import net.gabor6505.java.pcbuilder.xml.XmlParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Brand implements ReloadListener {
+public class Brand implements TypeManager.ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "brands.xml");
 

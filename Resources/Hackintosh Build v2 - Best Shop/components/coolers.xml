@@ -1,0 +1,132 @@
+<root>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Thermaltake</brand>
+            <model_number>Contac Silent 12</model_number>
+            <price>8350</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/thermaltake/contac-silent-12-120x120x25mm-cl-p039-al12bl-a-p358924219/</price_site>
+            <shop_site>http://compker.hu/termek/41228</shop_site>
+            <product_site>http://www.thermaltake.com/products-model.aspx?id=C_00003031</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>153</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Thermaltake</brand>
+            <model_number>Riing Silent 12</model_number>
+            <price>9401</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/thermaltake/riing-silent-12-120x120x25mm-cl-p022-al12-p340830740/</price_site>
+            <shop_site>https://www.bestmarkt.hu/thermaltake-riing-silent-12-blue-processzor-huto-p336132</shop_site>
+            <product_site>http://www.thermaltake.com/products-model.aspx?id=c_00002881</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>159</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Cooler Master</brand>
+            <model_number>Hyper 212X</model_number>
+            <price>9700</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/cooler-master/hyper-212x-rr-212x-17pk-r1-p328088771/</price_site>
+            <shop_site>http://compker.hu/termek/35706</shop_site>
+            <product_site>http://www.coolermaster.com/cooling/cpu-air-cooler/hyper-212x/</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>158</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>be quiet!</brand>
+            <model_number>Shadow Rock 2</model_number>
+            <price>12590</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/be-quiet/shadow-rock-2-bk013-p177857811/</price_site>
+            <shop_site>http://compker.hu/termek/23733</shop_site>
+            <product_site>https://www.bequiet.com/en/cpucooler/446</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>160</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Thermaltake</brand>
+            <model_number>Riing Silent 12 Pro</model_number>
+            <price>14686</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/thermaltake/riing-silent-12-pro-120x120x25mm-cl-p021-ca12-p347989834/</price_site>
+            <shop_site>https://www.pcx.hu//thermaltake-riing-silent-12-pro-blue-cl-p021-ca12bu-a-processzor-huto-957906</shop_site>
+            <product_site>http://www.thermaltake.com/Cooler/Air_Cooler_/Riing/C_00002931/Riing_Silent_12_Pro_Red_CPU_Cooler/design.htm</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>160</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Cryorig</brand>
+            <model_number>H5 Universal</model_number>
+            <price>14800</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/cryorig/h5-universal-p302586471/</price_site>
+            <shop_site>https://www.pcx.hu/cryorig-h5-universal-cr-h5a-processzor-huto-018587</shop_site>
+            <product_site>http://www.cryorig.com/h5-universal.php</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>160</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Scythe</brand>
+            <model_number>Mugen 5 Rev.B</model_number>
+            <price>14900</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/scythe/mugen-5-rev-b-scmg-5100-p376605197/</price_site>
+            <shop_site>https://www.bestmarkt.hu/scythe-mugen-5-rev-b-pwm-cpu-huto-p378796</shop_site>
+            <product_site>http://www.scythe-eu.com/en/products/cpu-cooler/mugen-5-revb.html</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>155</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Arctic</brand>
+            <model_number>Freezer 33 eSports</model_number>
+            <price>15187</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/arctic/freezer-33-esports-edition-acfre00029a-33a-34a-35a-p382324089/</price_site>
+            <shop_site>https://www.pcx.hu/arctic-freezer-33-esports-white-processzor-huto-667704</shop_site>
+            <product_site>https://www.arctic.ac/eu_en/freezer-33-esports-edition.html</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>150</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>be quiet!</brand>
+            <model_number>Dark Rock 3</model_number>
+            <price>18190</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/be-quiet/dark-rock-3-bk018-p214320224/</price_site>
+            <shop_site>https://ipon.hu/shop/termek/be-quiet-dark-rock-3/561492</shop_site>
+        </ComponentInfo>
+        <cooler_height_mm>163</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>be quiet!</brand>
+            <model_number>Dark Rock 4</model_number>
+            <price>20290</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/be-quiet/dark-rock-4-bk021-p406560559/</price_site>
+            <shop_site>https://www.bestmarkt.hu/be-quiet-dark-rock-4-pwm-cpu-huto-p439539</shop_site>
+            <product_site>https://www.bequiet.com/en/cpucooler/1376</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>160</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Thermalright</brand>
+            <model_number>Le Grand Macho RT</model_number>
+            <price>22615</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/thermalright/le-grand-macho-rt-152x140x26-5mm-100700733-p360598815/</price_site>
+            <shop_site>https://merlinhardver.hu/termek-reszletek/thermalright-le-grand-macho-rt-14248</shop_site>
+            <product_site>http://www.thermalright.de/en/cooler/56/le-grand-macho-rt</product_site>
+        </ComponentInfo>
+        <cooler_height_mm>159</cooler_height_mm>
+    </Cooler>
+    <Cooler>
+        <ComponentInfo>
+            <brand>Noctua</brand>
+            <model_number>Air Coolers</model_number>
+            <price>0</price>
+            <price_site>https://www.arukereso.hu/szamitogep-huto-c3094/f:noctua,processzor,aktiv-huto/</price_site>
+            <shop_site>https://www.arukereso.hu/szamitogep-huto-c3094/f:noctua,processzor,aktiv-huto/</shop_site>
+            <product_site>https://noctua.at/en/products/cpu-cooler-retail</product_site>
+        </ComponentInfo>
+    </Cooler>
+</root>

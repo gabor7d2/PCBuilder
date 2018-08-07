@@ -24,10 +24,15 @@ public class Ram extends Component {
 
     @Override
     public List<String> getExtraInfo() {
-        List<String> extraInfo = new ArrayList<>();
-        extraInfo.add(getTypeName() + " " + getFrequency());
-        extraInfo.add(get("count") + " x " + get("capacity_per_piece_mb") + " (" + getCapacity() + ")");
-        return extraInfo;
+        List<String> list = new ArrayList<>();
+        if (platform != null)
+            list.add(getTypeName() + " - " + getFrequency());
+
+        if (checkValidity("count") && checkValidity("capacity_per_piece_mb"))
+            list.add(get("count") + " x " + get("capacity_per_piece_mb") + " (" + getCapacity() + ")");
+
+        addExtraInfo(list, "Latency: CL", "latency", "");
+        return list;
     }
 
     public RamPlatform getPlatform() {

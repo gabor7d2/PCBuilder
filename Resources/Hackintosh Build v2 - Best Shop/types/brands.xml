@@ -1,0 +1,31 @@
+<root>
+    <brand name="Intel"/>
+    <brand name="AMD"/>
+    <brand name="Nvidia"/>
+    <brand name="Kingston"/>
+    <brand name="G.Skill"/>
+    <brand name="Gigabyte"/>
+    <brand name="MSI"/>
+    <brand name="ASUS"/>
+    <brand name="Zotac"/>
+    <brand name="Corsair"/>
+    <brand name="Samsung"/>
+    <brand name="ADATA"/>
+    <brand name="Toshiba"/>
+    <brand name="Western Digital"/>
+    <brand name="Corsair"/>
+    <brand name="Phanteks"/>
+    <brand name="NZXT"/>
+    <brand name="Cooler Master"/>
+    <brand name="LC-Power"/>
+    <brand name="Aerocool"/>
+    <brand name="Sharkoon"/>
+    <brand name="Modecom"/>
+    <brand name="be quiet!"/>
+    <brand name="Thermaltake"/>
+    <brand name="Cryorig"/>
+    <brand name="Scythe"/>
+    <brand name="Thermalright"/>
+    <brand name="Arctic"/>
+    <brand name="Noctua"/>
+</root>

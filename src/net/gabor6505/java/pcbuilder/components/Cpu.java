@@ -36,10 +36,15 @@ public class Cpu extends Component {
 
     @Override
     public List<String> getExtraInfo() {
-        List<String> extraInfo = new ArrayList<>();
-        extraInfo.add(get("cores") + " Cores, " + get("threads") + " Threads");
-        extraInfo.add(get("base_frequency_mhz") + " / " + get("turbo_frequency_mhz"));
-        return extraInfo;
+        List<String> list = new ArrayList<>();
+        if (checkValidity("cores") && checkValidity("threads"))
+            list.add(get("cores") + " Cores, " + get("threads") + " Threads");
+
+        addExtraInfos(list, "base_frequency_mhz", "/", "turbo_frequency_mhz");
+
+        if (cachesMB.length > 0)
+            list.add("Cache: " + getCacheValue(0));
+        return list;
     }
 
     public CpuPlatform getPlatform() {

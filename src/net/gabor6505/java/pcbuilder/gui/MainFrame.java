@@ -1,53 +1,66 @@
 package net.gabor6505.java.pcbuilder.gui;
 
 import net.gabor6505.java.pcbuilder.components.ComponentManager;
-import net.gabor6505.java.pcbuilder.gui.dialog.LoadingDialog;
+import net.gabor6505.java.pcbuilder.gui.dialog.ProgressDialog;
+import net.gabor6505.java.pcbuilder.gui.dialog.ProgressDialogType;
+import net.gabor6505.java.pcbuilder.utils.VersionManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 // TODO make a details pane for components that will be shown when the user clicks a component
-// TODO make component panes resize when the product's model number / name is too long
 // TODO add profile and component editing capabilities
-// TODO add error message dialogs for Xml parse errors
+// TODO add error dialogs for Xml parse errors
 
 // TODO document classes
-// TODO make icon for app (bundle jar file for each OS platform)
 
-// TODO implement component prices and shops to choose from
-
+// TODO implement shops to choose from and separate section for displaying the price of each category
 public class MainFrame extends JFrame implements KeyEventDispatcher {
+
+    public final static List<Image> APP_ICONS = new ArrayList<>();
 
     private static JScrollPane hoveredHorizontalScrollPane;
     private static JScrollPane hoveredVerticalScrollPane;
 
-    private final static int WIDTH = 800;
+    private final static int WIDTH = 900;
     private final static int HEIGHT = 720;
     private final static int MIN_WIDTH = 480;
     private final static int MIN_HEIGHT = 360;
 
     private final ComparisonPane comparisonPane;
 
+    private AtomicBoolean loading = new AtomicBoolean(true);
+    private AtomicBoolean welcomeDialog = new AtomicBoolean(false);
+
+    static {
+        APP_ICONS.add(getImageByPath("/icons/icon.png"));
+        APP_ICONS.add(getImageByPath("/icons/icon-512.png"));
+        APP_ICONS.add(getImageByPath("/icons/icon-256.png"));
+        APP_ICONS.add(getImageByPath("/icons/icon-128.png"));
+        APP_ICONS.add(getImageByPath("/icons/icon-64.png"));
+        APP_ICONS.add(getImageByPath("/icons/icon-32.png"));
+        APP_ICONS.add(getImageByPath("/icons/icon-16.png"));
+    }
+
     public MainFrame() {
         super();
-
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
+        setIconImages(APP_ICONS);
 
         /*if (System.getProperty("os.name").toLowerCase().contains("mac os")) {
             try {
-                Application.getApplication().setDockIconImage(ImageIO.read(getClass().getResourceAsStream("/icon.png")));
+                com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass().getResourceAsStream("/icons/icon.png")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }*/
 
-        /*FileUtils.extractZip("../config2_extr", "../config2.zip", false, false).printResult();
-        System.exit(0);*/
-
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
         setupLookAndFeel();
+        UIManager.getDefaults().put("TextArea.font", UIManager.getFont("TextField.font"));
 
         setTitle("PC Builder");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -57,29 +70,13 @@ public class MainFrame extends JFrame implements KeyEventDispatcher {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        LoadingDialog loadingDialog = new LoadingDialog(this);
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialogType.STARTUP);
+        progressDialog.setVisible(loading);
 
-        comparisonPane = new ComparisonPane(WIDTH, HEIGHT, MainFrame.this);
-        ComponentManager.autoLoad(loadingDialog);
+        comparisonPane = new ComparisonPane(WIDTH, HEIGHT, this);
+        ComponentManager.autoLoad(progressDialog);
 
-        setupKeyBindings();
-    }
-
-    private void setupKeyBindings() {
-        InputMap iMap = comparisonPane.getPanel().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        ActionMap aMap = comparisonPane.getPanel().getActionMap();
-
-        iMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "navRight");
-        iMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "navLeft");
-        iMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "navUp");
-        iMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "navDown");
-
-        aMap.put("navRight", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(e.paramString());
-            }
-        });
+        VersionManager.showWelcomeDialogIfNewerVersion(this, welcomeDialog);
     }
 
     private void setupLookAndFeel() {
@@ -108,7 +105,66 @@ public class MainFrame extends JFrame implements KeyEventDispatcher {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
+        if (loading.get() || welcomeDialog.get()) return false;
         if (e.getID() != KeyEvent.KEY_PRESSED) return false;
+
+        if (ProfileManager.getInstance() == null) return false;
+        if (ProfileManager.getInstance().getOpenDialogCount() != 0) return false;
+        if (e.isMetaDown() && e.getKeyCode() == KeyEvent.VK_H) return false;
+
+        // Access basic functions with keyboard shortcuts
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_H:
+                VersionManager.showHelpDialog(this);
+                return true;
+            case KeyEvent.VK_R:
+                comparisonPane.reloadEverything();
+                return true;
+            case KeyEvent.VK_N:
+                comparisonPane.getProfileManager().renameProfile();
+                return true;
+            case KeyEvent.VK_T:
+            case KeyEvent.VK_PLUS:
+            case KeyEvent.VK_ADD:
+            case KeyEvent.VK_INSERT:
+            case KeyEvent.VK_HELP:
+                comparisonPane.getProfileManager().addProfile();
+                return true;
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_MINUS:
+            case KeyEvent.VK_SUBTRACT:
+            case KeyEvent.VK_DELETE:
+                comparisonPane.getProfileManager().removeProfile();
+                return true;
+            case KeyEvent.VK_1:
+                comparisonPane.getProfileManager().selectProfile(0);
+                return true;
+            case KeyEvent.VK_2:
+                comparisonPane.getProfileManager().selectProfile(1);
+                return true;
+            case KeyEvent.VK_3:
+                comparisonPane.getProfileManager().selectProfile(2);
+                return true;
+            case KeyEvent.VK_4:
+                comparisonPane.getProfileManager().selectProfile(3);
+                return true;
+            case KeyEvent.VK_5:
+                comparisonPane.getProfileManager().selectProfile(4);
+                return true;
+            case KeyEvent.VK_6:
+                comparisonPane.getProfileManager().selectProfile(5);
+                return true;
+            case KeyEvent.VK_7:
+                comparisonPane.getProfileManager().selectProfile(6);
+                return true;
+            case KeyEvent.VK_8:
+                comparisonPane.getProfileManager().selectProfile(7);
+                return true;
+            case KeyEvent.VK_9:
+                comparisonPane.getProfileManager().selectProfile(8);
+                return true;
+        }
+
         if (e.getComponent() instanceof JComboBox) return false;
 
         // TODO fix program not rechecking what the cursor hovers over when we move the vertical pane with up/down key
@@ -133,5 +189,9 @@ public class MainFrame extends JFrame implements KeyEventDispatcher {
             }
         }
         return false;
+    }
+
+    private static Image getImageByPath(String pathInJar) {
+        return Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource(pathInJar));
     }
 }

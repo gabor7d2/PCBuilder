@@ -1,16 +1,11 @@
 package net.gabor6505.java.pcbuilder.utils;
 
 import com.sun.istack.internal.NotNull;
-import net.gabor6505.java.pcbuilder.gui.ProfileManager;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+import java.net.*;
+import java.util.*;
+import java.util.zip.*;
 
 import static net.gabor6505.java.pcbuilder.utils.FileUtils.FileOperationResult.*;
 
@@ -27,7 +22,6 @@ public class FileUtils {
         FILE_IN_JAR_DOESNT_EXIST("The specified file doesn't exist in the JAR file!"),
         DIRECTORY_ALREADY_EXISTS("A directory with the same name already exists!"),
         FILE_ALREADY_EXISTS("A file with the same name already exists!"),
-        DESTINATION_DIRECTORY_ALREADY_EXISTS("The destination directory already exists!"),
         COULD_NOT_COPY_TO_TARGET("Could not copy items at source path to destination path!"),
         COULD_NOT_DELETE_DIRECTORY("Could not delete directory!"),
         COULD_NOT_DELETE_FILE("Could not delete file!"),
@@ -36,6 +30,7 @@ public class FileUtils {
         COULD_NOT_DOWNLOAD_FILE("Could not download file from the specified url!"),
         NOT_A_DIRECTORY("The specified path doesn't point to a directory!"),
         NOT_A_ZIP_ARCHIVE("The specified item is not a zip archive!"),
+        CANCELLED("The operation was cancelled!"),
         UNKNOWN("An unknown error happened!");
 
         private final String localizedMessage;
@@ -113,68 +108,17 @@ public class FileUtils {
     }
 
     /**
-     * Extracts a zip directly from an url, and does not download a temporary zip file,
-     * but instead uses a {@link BufferedInputStream} to write the website's zip's contents directly to disk
-     * Extracts the zip's contents to inside the specified destinationDirPath
-     *
-     * @param destinationDirPath       The path to extract the zip's contents into
-     * @param url                      The url that is directly pointing to a zip file
-     * @param overwrite                Specifies whether the program should overwrite the specified extraction directory if the directory already exists
-     * @param overwriteWithZipContents Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
-     * @return The result of the operation
-     */
-    public static FileOperationData<String> extractZipFromUrl(String destinationDirPath, String url, boolean overwrite, boolean overwriteWithZipContents) {
-        try (BufferedInputStream bis = new BufferedInputStream(new URL(url).openStream())) {
-            File destDir = new File(destinationDirPath);
-            if (!destDir.exists()) destDir.mkdirs();
-            //else return DIRECTORY_ALREADY_EXISTS;
-
-            return extractZip(destinationDirPath, bis, overwrite, overwriteWithZipContents);
-        } catch (IOException e) {
-            if (e instanceof MalformedURLException) {
-                return new FileOperationData<>(MALFORMED_URL, url);
-            } else e.printStackTrace();
-        }
-        return new FileOperationData<>(UNKNOWN);
-    }
-
-    /**
-     * Downloads a file with the specified file name from the specified url to the specified folder
-     *
-     * @param destinationDirPath The path of the directory where the file should be downloaded
-     * @param url                The url to download the file from
-     * @param fileName           The name of the file that gets downloaded
-     * @return The result of the operation
-     */
-    public static FileOperationData<String> downloadFileFromUrl(String destinationDirPath, String url, String fileName) {
-        try (BufferedInputStream bis = new BufferedInputStream(new URL(url).openStream());
-             FileOutputStream fos = new FileOutputStream(destinationDirPath + File.separator + fileName)) {
-
-            copyStream(bis, fos);
-            return new FileOperationData<>(SUCCESS);
-        } catch (Exception e) {
-            if (e instanceof MalformedURLException) {
-                return new FileOperationData<>(MALFORMED_URL, url);
-            } else e.printStackTrace();
-        }
-        return new FileOperationData<>(COULD_NOT_DOWNLOAD_FILE);
-    }
-
-    /**
      * Extracts a zip file from the specified input stream to inside the specified directory path
      *
-     * @param destinationDirPath       The directory path to extract the zip's contents into
-     * @param zipFileInputStream       The input stream of the zip file
-     * @param overwrite                Specifies whether the program should overwrite the specified extraction directory if the directory already exists
-     * @param overwriteWithZipContents Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
+     * @param destinationDirPath The directory path to extract the zip's contents into
+     * @param zipFileInputStream The input stream of the zip file
+     * @param overwrite          Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
      * @return The result of the operation
      */
-    public static FileOperationData<String> extractZip(String destinationDirPath, InputStream zipFileInputStream, boolean overwrite, boolean overwriteWithZipContents) {
+    public static FileOperationData<String> extractZip(String destinationDirPath, InputStream zipFileInputStream, boolean overwrite) {
         // Get the destination directory
         File destinationDir = new File(destinationDirPath);
 
-        // Delete the dest dir if overwrite is enabled
-        if (overwrite) deleteDirectory(destinationDir);
         // Create dest dir if it doesn't exist
         if (!destinationDir.exists()) destinationDir.mkdirs();
 
@@ -201,8 +145,8 @@ public class FileUtils {
                 // Add the current file path to the list that will be returned
                 paths.add(currentFile.getAbsolutePath());
 
-                // Delete the current file first if overwriteWithZipContents is enabled
-                if (overwriteWithZipContents) deleteFile(currentFile);
+                // Delete the current file first if overwrite is enabled
+                if (overwrite) delete(currentFile);
 
                 // Create a directory if this zip entry is a directory or write the file to disk if it is not
                 if (ze.isDirectory()) {
@@ -237,15 +181,14 @@ public class FileUtils {
     /**
      * Extracts a zip file from the specified path to inside the specified directory path
      *
-     * @param destinationDirPath       The path to extract the zip's contents to
-     * @param zipFilePath              The path of the zip file
-     * @param overwrite                Specifies whether the program should overwrite the specified extraction directory if the directory already exists
-     * @param overwriteWithZipContents Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
+     * @param destinationDirPath The path to extract the zip's contents to
+     * @param zipFilePath        The path of the zip file
+     * @param overwrite          Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
      * @return The result of the operation
      */
-    public static FileOperationData<String> extractZip(String destinationDirPath, String zipFilePath, boolean overwrite, boolean overwriteWithZipContents) {
+    public static FileOperationData<String> extractZipFile(String destinationDirPath, String zipFilePath, boolean overwrite) {
         try (FileInputStream in = new FileInputStream(zipFilePath)) {
-            return extractZip(destinationDirPath, in, overwrite, overwriteWithZipContents);
+            return extractZip(destinationDirPath, in, overwrite);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -253,23 +196,54 @@ public class FileUtils {
     }
 
     /**
-     * Deletes a directory and all of it's subdirectories, including all files contained in them
+     * Extracts a zip directly from an url, and does not download a temporary zip file,
+     * but instead uses a {@link BufferedInputStream} to write the website's zip's contents directly to disk
+     * Extracts the zip's contents inside the specified destinationDirPath
      *
-     * @param directory The directory to delete
+     * @param destinationDirPath The path to extract the zip's contents into
+     * @param url                The url that is directly pointing to a zip file
+     * @param overwrite          Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
      * @return The result of the operation
      */
-    public static FileOperationResult deleteDirectory(File directory) {
-        if (directory.exists()) {
-            File[] files = directory.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isDirectory()) deleteDirectory(file);
-                    else file.delete();
-                }
-            } else return NOT_A_DIRECTORY;
-            return directory.delete() ? SUCCESS : COULD_NOT_DELETE_DIRECTORY;
+    public static FileOperationData<String> extractZipFromUrl(String destinationDirPath, String url, boolean overwrite) {
+        try (BufferedInputStream bis = new BufferedInputStream(new URL(url).openStream())) {
+            File destDir = new File(destinationDirPath);
+            if (!destDir.exists()) destDir.mkdirs();
+            //else return DIRECTORY_ALREADY_EXISTS;
+
+            return extractZip(destinationDirPath, bis, overwrite);
+        } catch (IOException e) {
+            if (e instanceof MalformedURLException) {
+                return new FileOperationData<>(MALFORMED_URL, url);
+            } else e.printStackTrace();
         }
-        return DIRECTORY_DOESNT_EXIST;
+        return new FileOperationData<>(UNKNOWN);
+    }
+
+    /**
+     * Downloads a file with the specified file name from the specified url to the specified folder
+     *
+     * @param destinationDirPath The path of the directory where the file should be downloaded
+     * @param url                The url to download the file from
+     * @param fileName           The name of the file that gets downloaded
+     * @param overwrite          Specifies whether the file should be overwritten if it already exists
+     * @return The result of the operation
+     */
+    public static FileOperationData<String> downloadFile(String destinationDirPath, String url, String fileName, boolean overwrite) {
+        try (BufferedInputStream bis = new BufferedInputStream(new URL(url).openStream());
+             FileOutputStream fos = new FileOutputStream(destinationDirPath + File.separator + fileName)) {
+
+            File file = new File(destinationDirPath + File.separator + fileName);
+            if (file.exists() && !overwrite) return new FileOperationData<>(FILE_ALREADY_EXISTS, file.getPath());
+
+            copyStream(bis, fos);
+            return new FileOperationData<>(SUCCESS);
+        } catch (Exception e) {
+            if (e instanceof MalformedURLException) {
+                return new FileOperationData<>(MALFORMED_URL, url);
+            } else e.printStackTrace();
+        }
+        return new FileOperationData<>(COULD_NOT_DOWNLOAD_FILE);
     }
 
     /**
@@ -278,12 +252,31 @@ public class FileUtils {
      * @param file The normal file or directory to delete
      * @return The result of the operation
      */
-    public static FileOperationResult deleteFile(File file) {
+    public static FileOperationResult delete(File file) {
         if (file.isFile()) {
             boolean delete = file.delete();
             return delete ? SUCCESS : COULD_NOT_DELETE_FILE;
         } else if (file.isDirectory()) return deleteDirectory(file);
         return UNKNOWN;
+    }
+
+    /**
+     * Deletes a directory and all of it's subdirectories, including all files contained in them
+     *
+     * @param directory The directory to delete
+     * @return The result of the operation
+     */
+    private static FileOperationResult deleteDirectory(File directory) {
+        if (directory.exists()) {
+            File[] files = directory.listFiles();
+            if (files == null) return NOT_A_DIRECTORY;
+            for (File file : files) {
+                if (file.isDirectory()) deleteDirectory(file);
+                else file.delete();
+            }
+            return directory.delete() ? SUCCESS : COULD_NOT_DELETE_DIRECTORY;
+        }
+        return DIRECTORY_DOESNT_EXIST;
     }
 
     /**
@@ -331,20 +324,27 @@ public class FileUtils {
 
     /**
      * Copies either a file or a folder with all of it's sub folders and sub files
-     * Overwrites any existing files if overwrite is enabled
+     * Overwrites the targetLocation if overwrite is set to true
      *
      * @param sourceLocation The file representing the source location
      * @param targetLocation The file representing the target location
-     * @param overwrite If set to true, it will overwrite any existing files and folders
+     * @param overwrite      If set to true, it will overwrite any existing files and folders
      * @return The result of the operation
      */
     public static FileOperationData<String> copy(File sourceLocation, File targetLocation, boolean overwrite) {
         if (sourceLocation.getAbsolutePath().equals(targetLocation.getAbsolutePath()))
             return new FileOperationData<>(SOURCE_SAME_AS_DESTINATION, targetLocation.getPath(), sourceLocation.getPath());
+
+        if (overwrite) delete(targetLocation);
+
         try {
             if (sourceLocation.isDirectory()) {
+                if (targetLocation.exists() && !overwrite)
+                    return new FileOperationData<>(DIRECTORY_ALREADY_EXISTS, targetLocation.getPath(), sourceLocation.getPath());
                 copyDirectory(sourceLocation, targetLocation, overwrite);
             } else {
+                if (targetLocation.exists() && !overwrite)
+                    return new FileOperationData<>(FILE_ALREADY_EXISTS, targetLocation.getPath(), sourceLocation.getPath());
                 copyFile(sourceLocation, targetLocation, overwrite);
             }
             return new FileOperationData<>(SUCCESS, targetLocation.getPath(), sourceLocation.getPath());
@@ -354,17 +354,20 @@ public class FileUtils {
         return new FileOperationData<>(COULD_NOT_COPY_TO_TARGET, targetLocation.getPath(), sourceLocation.getPath());
     }
 
-    private static void copyDirectory(File source, File target, boolean overwrite) {
+    private static void copyDirectory(File source, File target, boolean overwrite) throws IOException {
         if (target.exists() && !overwrite) return;
-        if (overwrite) deleteFile(target);
-        if (!target.exists()) {
-            target.mkdir();
-        }
+        if (overwrite) delete(target);
+        if (!target.exists()) target.mkdir();
 
         String[] fileNames = source.list();
         if (fileNames == null) return;
         for (String f : fileNames) {
-            copy(new File(source, f), new File(target, f), overwrite);
+
+            if (new File(source, f).isDirectory()) {
+                copyDirectory(new File(source, f), new File(target, f), overwrite);
+            } else {
+                copyFile(new File(source, f), new File(target, f), overwrite);
+            }
         }
     }
 
@@ -413,9 +416,11 @@ public class FileUtils {
 
     /**
      * Checks whether an input stream is a zip archive, independent of the file extension used
-     * Note: This method does not close the input stream, so it needs to be closed after this method is called
+     * <br>
+     * Note: This method does not close the input stream, instead it resets it so it can be
+     * read again from the beginning
      *
-     * @param bis The BufferedInputStream of a zip archive
+     * @param bis The <code>BufferedInputStream</code> of a zip archive
      * @return True if the specified input stream corresponds to a zip archive, false otherwise or if an error happened
      */
     public static boolean isZipArchive(BufferedInputStream bis) {
@@ -478,7 +483,7 @@ public class FileUtils {
             return new FileOperationData<>(FILE_ALREADY_EXISTS, destFilePath);
         }
 
-        InputStream in = ProfileManager.class.getResourceAsStream(pathInJar);
+        InputStream in = FileUtils.class.getResourceAsStream(pathInJar);
         if (in == null) return new FileOperationData<>(FILE_IN_JAR_DOESNT_EXIST, pathInJar);
 
         try (BufferedInputStream bis = new BufferedInputStream(in);
@@ -507,20 +512,19 @@ public class FileUtils {
     /**
      * Extracts a zip file contained within this running JAR at the specified path, to the specified directory
      *
-     * @param zipPathInJar             The path of the zip file inside the JAR file
-     * @param destDirPath              The path of the directory where the zip's contents should be extracted
-     * @param overwrite                Specifies whether the program should overwrite the specified extraction directory if the directory already exists
-     * @param overwriteWithZipContents Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
+     * @param zipPathInJar The path of the zip file inside the JAR file
+     * @param destDirPath  The path of the directory where the zip's contents should be extracted
+     * @param overwrite    Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
      * @return The result of the operation
      */
-    public static FileOperationData<String> extractZipFromJar(String zipPathInJar, String destDirPath, boolean overwrite, boolean overwriteWithZipContents) {
+    public static FileOperationData<String> extractZipFromJar(String zipPathInJar, String destDirPath, boolean overwrite) {
         new File(destDirPath).getParentFile().mkdirs();
 
-        InputStream in = ProfileManager.class.getResourceAsStream(zipPathInJar);
+        InputStream in = FileUtils.class.getResourceAsStream(zipPathInJar);
         if (in == null) return new FileOperationData<>(FILE_IN_JAR_DOESNT_EXIST, zipPathInJar);
 
         try (BufferedInputStream bis = new BufferedInputStream(in)) {
-            return FileUtils.extractZip(destDirPath, bis, overwrite, overwriteWithZipContents);
+            return FileUtils.extractZip(destDirPath, bis, overwrite);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -530,14 +534,13 @@ public class FileUtils {
     /**
      * Extracts a zip file contained within this running JAR at the specified path, to the specified directory
      *
-     * @param zipPathInJar             The path of the zip file inside the JAR file
-     * @param destDir                  The directory where the zip's contents should be extracted
-     * @param overwrite                Specifies whether the program should overwrite the specified extraction directory if the directory already exists
-     * @param overwriteWithZipContents Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
+     * @param zipPathInJar The path of the zip file inside the JAR file
+     * @param destDir      The directory where the zip's contents should be extracted
+     * @param overwrite    Specifies if the program should overwrite all files and folders on disk that are extracted from the zip file
      * @return The result of the operation
      */
-    public static FileOperationData<String> extractZipFromJar(String zipPathInJar, File destDir, boolean overwrite, boolean overwriteWithZipContents) {
-        return extractZipFromJar(zipPathInJar, destDir.getPath(), overwrite, overwriteWithZipContents);
+    public static FileOperationData<String> extractZipFromJar(String zipPathInJar, File destDir, boolean overwrite) {
+        return extractZipFromJar(zipPathInJar, destDir.getPath(), overwrite);
     }
 
     /**
@@ -550,7 +553,7 @@ public class FileUtils {
      * @return The result of the operation
      */
     public static FileOperationData<String> extractZipFromJar(String zipPathInJar, String destDirPath) {
-        return extractZipFromJar(zipPathInJar, destDirPath, false, false);
+        return extractZipFromJar(zipPathInJar, destDirPath, false);
     }
 
     /**

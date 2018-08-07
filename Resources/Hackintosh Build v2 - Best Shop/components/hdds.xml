@@ -1,0 +1,106 @@
+<root>
+    <!--<Hdd>
+        <ComponentInfo>
+            <brand>Toshiba</brand>
+            <model_number>DT01ACA050</model_number>
+            <image_path_override>Toshiba_DT01ACAxxx</image_path_override>
+            <price>10490</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/toshiba/500gb-32mb-7200rpm-sata3-dt01aca050-p109314459/</price_site>
+            <shop_site>https://www.aqua.hu/500gb-toshiba-35-sataiii-32-mb-cache-winchester-dt01aca050-197881.html</shop_site>
+            <product_site>https://toshiba.semicon-storage.com/us/product/storage-products/client-hdd/dt01acaxxx.html</product_site>
+        </ComponentInfo>
+        <capacity_mb>500000</capacity_mb>
+        <cache_mb>32</cache_mb>
+    </Hdd>-->
+    <Hdd>
+        <ComponentInfo>
+            <brand>Toshiba</brand>
+            <model_number>DT01ACA100</model_number>
+            <image_path_override>Toshiba_DT01ACAxxx</image_path_override>
+            <price>11090</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/toshiba/3-5-1tb-7200rpm-32mb-sata3-dt01aca100-p107777827/</price_site>
+            <shop_site>https://www.aqua.hu/1tb-toshiba-35-sataiii-32-mb-cache-winchester-dt01aca100-197885.html</shop_site>
+            <product_site>https://toshiba.semicon-storage.com/us/product/storage-products/client-hdd/dt01acaxxx.html</product_site>
+        </ComponentInfo>
+        <capacity_mb>1000000</capacity_mb>
+        <cache_mb>32</cache_mb>
+    </Hdd>
+    <Hdd>
+        <ComponentInfo>
+            <brand>Western Digital</brand>
+            <model_number>Blue (10EZEX)</model_number>
+            <image_path_override>WD10EZEX</image_path_override>
+            <price>11490</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/western-digital/caviar-blue-3-5-1tb-64mb-sata3-wd10ezex-p102155110/</price_site>
+            <shop_site>https://www.aqua.hu/1tb-wd-35-caviar-blue-sataiii-64mb-cache-winchester-wd10ezex-186231.html</shop_site>
+            <product_site>https://www.wdc.com/products/internal-storage/wd-blue-pc-desktop-hard-drive.html#WD10EZEX</product_site>
+        </ComponentInfo>
+        <capacity_mb>1000000</capacity_mb>
+        <cache_mb>64</cache_mb>
+    </Hdd>
+    <Hdd>
+        <ComponentInfo>
+            <brand>Toshiba</brand>
+            <model_number>DT01ACA200</model_number>
+            <image_path_override>Toshiba_DT01ACAxxx</image_path_override>
+            <price>15807</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/toshiba/2tb-64mb-7200rpm-sata3-dt01aca200-p118378770/</price_site>
+            <shop_site>https://www.pcx.hu//toshiba-2tb-64mb-sata3-dt01aca200-merevlemez-117021</shop_site>
+            <product_site>https://toshiba.semicon-storage.com/us/product/storage-products/client-hdd/dt01acaxxx.html</product_site>
+        </ComponentInfo>
+        <capacity_mb>2000000</capacity_mb>
+        <cache_mb>64</cache_mb>
+    </Hdd>
+    <Hdd>
+        <ComponentInfo>
+            <brand>Toshiba</brand>
+            <model_number>DT01ACA300</model_number>
+            <image_path_override>Toshiba_DT01ACAxxx</image_path_override>
+            <price>20142</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/toshiba/3tb-64mb-7200rpm-sata3-dt01aca300-p127912473/</price_site>
+            <shop_site>https://www.pcx.hu//toshiba-3tb-64mb-sata3-dt01aca300-merevlemez-084020</shop_site>
+            <product_site>https://toshiba.semicon-storage.com/us/product/storage-products/client-hdd/dt01acaxxx.html</product_site>
+        </ComponentInfo>
+        <capacity_mb>3000000</capacity_mb>
+        <cache_mb>64</cache_mb>
+    </Hdd>
+    <Hdd>
+        <ComponentInfo>
+            <brand>Western Digital</brand>
+            <model_number>Black (1003FZEX)</model_number>
+            <image_path_override>WD1003FZEX</image_path_override>
+            <price>22680</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/western-digital/black-3-5-1tb-7200rpm-64mb-sata3-wd1003fzex-p205537185/</price_site>
+            <shop_site>http://compker.hu/termek/13346</shop_site>
+            <product_site>https://www.wdc.com/en-ie/products/internal-storage/wd-black-desktop.html#WD1003FZEX</product_site>
+        </ComponentInfo>
+        <capacity_mb>1000000</capacity_mb>
+        <cache_mb>64</cache_mb>
+    </Hdd>
+    <Hdd>
+        <ComponentInfo>
+            <brand>Western Digital</brand>
+            <model_number>Black (2003FZEX)</model_number>
+            <image_path_override>WD2003FZEX</image_path_override>
+            <price>35350</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/western-digital/caviar-black-3-5-2tb-7200rpm-64mb-sata3-wd2003fzex-p203513919/</price_site>
+            <shop_site>http://compker.hu/termek/13345</shop_site>
+            <product_site>https://www.wdc.com/en-ie/products/internal-storage/wd-black-desktop.html#WD2003FZEX</product_site>
+        </ComponentInfo>
+        <capacity_mb>2000000</capacity_mb>
+        <cache_mb>64</cache_mb>
+    </Hdd>
+    <Hdd>
+        <ComponentInfo>
+            <brand>Western Digital</brand>
+            <model_number>Black (4005FZBX)</model_number>
+            <image_path_override>WD4003FZEX</image_path_override>
+            <price>56690</price>
+            <price_site>https://www.arukereso.hu/merevlemez-c3103/western-digital/black-4tb-sata-3-wd4005fzbx-p398492603/</price_site>
+            <shop_site>https://www.aqua.hu/4tb-wd-35-black-sataiii-winchester-wd4005fzbx-601352.html</shop_site>
+            <product_site>https://www.wdc.com/en-ie/products/internal-storage/wd-black-desktop.html#WD4005FZBX</product_site>
+        </ComponentInfo>
+        <capacity_mb>4000000</capacity_mb>
+        <cache_mb>256</cache_mb>
+    </Hdd>
+</root>

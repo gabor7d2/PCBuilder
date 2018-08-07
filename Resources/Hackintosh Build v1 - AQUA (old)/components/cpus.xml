@@ -1,0 +1,107 @@
+<root>
+    <Cpu>
+        <ComponentInfo>
+            <brand>Intel</brand>
+            <model_number>Core i5-8400</model_number>
+            <price>53490</price>
+            <price_site>https://www.arukereso.hu/processzor-c3139/intel/core-i5-8400-hexa-core-2-8ghz-lga1151-p387631281/</price_site>
+            <shop_site>https://www.aqua.hu/intel-core-i5-8400-28ghz-socket-1151-dobozos-bx80684i58400-555974.html</shop_site>
+            <product_site>https://ark.intel.com/products/126687/Intel-Core-i5-8400-Processor-9M-Cache-up-to-4_00-GHz</product_site>
+        </ComponentInfo>
+        <socket>1151</socket>
+        <generation>8</generation>
+        <unlocked>false</unlocked>
+
+        <cores>6</cores>
+        <threads>6</threads>
+        <base_frequency_mhz>2800</base_frequency_mhz>
+        <turbo_frequency_mhz>4000</turbo_frequency_mhz>
+        <caches>
+            <cache_mb>9</cache_mb>
+            <cache_mb>1.5</cache_mb>
+            <cache_mb>0.386</cache_mb>
+        </caches>
+        <ram_max_mb>64000</ram_max_mb>
+        <tdp_w>65</tdp_w>
+
+        <IGpu>
+            <ComponentInfo>
+                <brand>Intel</brand>
+                <model_number>UHD Graphics 630</model_number>
+            </ComponentInfo>
+            <base_frequency_mhz>350</base_frequency_mhz>
+            <max_frequency_mhz>1050</max_frequency_mhz>
+            <supported_displays>3</supported_displays>
+        </IGpu>
+    </Cpu>
+    <Cpu>
+        <ComponentInfo>
+            <brand>Intel</brand>
+            <model_number>Core i5-8600K</model_number>
+            <price>74890</price>
+            <price_site>https://www.arukereso.hu/processzor-c3139/intel/core-i5-8600k-hexa-core-3-6ghz-lga1151-p388078899/</price_site>
+            <shop_site>https://www.aqua.hu/intel-core-i5-8600k-36ghz-socket-1151-dobozos-bx80684i58600k-555986.html</shop_site>
+            <product_site>https://ark.intel.com/products/126685/Intel-Core-i5-8600K-Processor-9M-Cache-up-to-4_30-GHz</product_site>
+        </ComponentInfo>
+        <socket>1151</socket>
+        <generation>8</generation>
+        <unlocked>true</unlocked>
+
+        <cores>6</cores>
+        <threads>6</threads>
+        <base_frequency_mhz>3600</base_frequency_mhz>
+        <turbo_frequency_mhz>4300</turbo_frequency_mhz>
+        <caches>
+            <cache_mb>9</cache_mb>
+            <cache_mb>1.5</cache_mb>
+            <cache_mb>0.386</cache_mb>
+        </caches>
+        <ram_max_mb>64000</ram_max_mb>
+        <tdp_w>95</tdp_w>
+
+        <IGpu>
+            <ComponentInfo>
+                <brand>Intel</brand>
+                <model_number>UHD Graphics 630</model_number>
+            </ComponentInfo>
+            <base_frequency_mhz>350</base_frequency_mhz>
+            <max_frequency_mhz>1150</max_frequency_mhz>
+            <supported_displays>3</supported_displays>
+        </IGpu>
+    </Cpu>
+    <Cpu>
+        <ComponentInfo>
+            <brand>Intel</brand>
+            <model_number>Core i7-8700K</model_number>
+            <price>105490</price>
+            <price_site>https://www.arukereso.hu/processzor-c3139/intel/core-i7-8700k-hexa-core-3-7ghz-lga1151-p387717561/</price_site>
+            <shop_site>https://www.aqua.hu/intel-core-i7-8700k-37ghz-socket-1151-dobozos-bx80684i78700k-555908.html</shop_site>
+            <product_site>https://ark.intel.com/products/126684/Intel-Core-i7-8700K-Processor-12M-Cache-up-to-4_70-GHz</product_site>
+        </ComponentInfo>
+        <socket>1151</socket>
+        <generation>8</generation>
+        <unlocked>true</unlocked>
+
+        <cores>6</cores>
+        <threads>12</threads>
+        <base_frequency_mhz>3700</base_frequency_mhz>
+        <turbo_frequency_mhz>4700</turbo_frequency_mhz>
+        <caches>
+            <cache_mb>12</cache_mb>
+            <cache_mb>1.5</cache_mb>
+            <cache_mb>0.386</cache_mb>
+        </caches>
+        <ram_max_mb>64000</ram_max_mb>
+        <tdp_w>95</tdp_w>
+
+        <IGpu>
+            <ComponentInfo>
+                <brand>Intel</brand>
+                <model_number>UHD Graphics 630</model_number>
+            </ComponentInfo>
+            <base_frequency_mhz>350</base_frequency_mhz>
+            <max_frequency_mhz>1200</max_frequency_mhz>
+            <supported_displays>3</supported_displays>
+        </IGpu>
+    </Cpu>
+</root>

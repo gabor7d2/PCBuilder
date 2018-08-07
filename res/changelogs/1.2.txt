@@ -1,0 +1,1 @@
+• Added support for CPU Cooler height info below Cases and Air coolers

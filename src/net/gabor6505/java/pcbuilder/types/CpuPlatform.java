@@ -5,7 +5,7 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CpuPlatform implements ReloadListener {
+public class CpuPlatform implements TypeManager.ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "cpu_types.xml");
     public final static String[] NODE_NAMES = new String[]{"brand", "socket"};

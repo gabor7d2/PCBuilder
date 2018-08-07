@@ -5,7 +5,7 @@ import net.gabor6505.java.pcbuilder.xml.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RamPlatform implements ReloadListener {
+public class RamPlatform implements TypeManager.ReloadListener {
 
     public final static XmlContract CONTRACT = new XmlContract(XmlContract.Folder.TYPES, "ram_types.xml");
     public final static String[] NODE_NAMES = new String[]{"type", "frequency"};

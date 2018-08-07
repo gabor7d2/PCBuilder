@@ -1,0 +1,11 @@
+<root>
+    <type brand="Nvidia" prefix="GeForce GTX">
+        <name>1050</name>
+        <name>1050 Ti</name>
+        <name>1060</name>
+        <name>1070</name>
+        <name>1070 Ti</name>
+        <name>1080</name>
+        <name>1080 Ti</name>
+    </type>
+</root>

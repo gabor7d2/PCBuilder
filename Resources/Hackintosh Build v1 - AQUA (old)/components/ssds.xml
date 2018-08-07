@@ -1,0 +1,49 @@
+<root>
+    <Ssd>
+        <ComponentInfo>
+            <brand>ADATA</brand>
+            <model_number>SU800</model_number>
+            <price>12590</price>
+            <price_site>https://ssd-meghajto.arukereso.hu/adata/su800-128gb-asu800ss-128gt-c-p348451872/</price_site>
+            <shop_site>https://www.aqua.hu/128gb-adata-ssd-sataiii-25-meghajto-su800-series-asu800ss-128gt-c-475752.html</shop_site>
+            <product_site>http://www.adata.com/en/feature/410</product_site>
+        </ComponentInfo>
+        <capacity_mb>128000</capacity_mb>
+    </Ssd>
+    <Ssd>
+        <ComponentInfo>
+            <brand>ADATA</brand>
+            <model_number>SP920</model_number>
+            <image_path_extension>128</image_path_extension>
+            <price>15690</price>
+            <price_site>https://ssd-meghajto.arukereso.hu/adata/premier-pro-sp920-2-5-128gb-sata-3-asp920ss3-128gm-c-p223919760/</price_site>
+            <shop_site>https://www.aqua.hu/128gb-adata-ssd-sataiii-25-meghajto-sp920-premier-pro-series-asp920ss3-128gm-c-276839.html</shop_site>
+            <product_site>http://www.adata.com/en/feature/286</product_site>
+        </ComponentInfo>
+        <capacity_mb>128000</capacity_mb>
+    </Ssd>
+    <Ssd>
+        <ComponentInfo>
+            <brand>Samsung</brand>
+            <model_number>860 EVO Basic</model_number>
+            <image_path_override>Samsung_EVO_Basic</image_path_override>
+            <price>20890</price>
+            <price_site>https://ssd-meghajto.arukereso.hu/samsung/860-evo-250gb-sata3-mz-76e250b-p397216607/</price_site>
+            <shop_site>https://www.aqua.hu/250gb-samsung-860-evo-ssd-meghajto-mz-76e250beu-588310.html</shop_site>
+            <product_site>https://www.samsung.com/hu/memory-storage/860-evo-sata-3-2-5-ssd/MZ-76E250BEU/</product_site>
+        </ComponentInfo>
+        <capacity_mb>250000</capacity_mb>
+    </Ssd>
+    <Ssd>
+        <ComponentInfo>
+            <brand>Samsung</brand>
+            <model_number>860 EVO Basic</model_number>
+            <image_path_override>Samsung_EVO_Basic</image_path_override>
+            <price>33990</price>
+            <price_site>https://ssd-meghajto.arukereso.hu/samsung/evo-860-500gb-mz-76e500b-p397216585/</price_site>
+            <shop_site>https://www.aqua.hu/500gb-samsung-860-evo-ssd-meghajto-mz-76e500beu-588328.html</shop_site>
+            <product_site>https://www.samsung.com/hu/memory-storage/860-evo-sata-3-2-5-ssd/MZ-76E500BEU/</product_site>
+        </ComponentInfo>
+        <capacity_mb>500000</capacity_mb>
+    </Ssd>
+</root>

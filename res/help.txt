@@ -1,0 +1,33 @@
+Component controls:
+• Click on brand name or model number:
+    • Opens the component's product site
+• Click on price:
+    • Opens the component's shop site
+• Click on component image:
+    • Left: Opens the component's price site
+    • Right: Enlarges the component's image
+
+• Click on a category's image:
+    • Opens the category's price site that 
+      contains every product of that category
+
+Keyboard controls:
+• H: Shows this help dialog
+
+• R: Reloads the current profile
+• N: Rename a profile
+• T / + / Insert: Add a new profile
+• W / - / Delete: Remove the current profile
+    • (Does not delete the profile's files)
+
+• 1 - 9 keys: Switch between profiles
+
+When a component's image is enlarged, you can navigate 
+between the components in the same category with:
+    • Arrow keys or B (back) / N (next) key
+
+Price calculation:
+• Only the categories that are ticked on the top
+  are calculated into the total price
+• Select the component you want it to calculate
+  from that category with the circular buttons

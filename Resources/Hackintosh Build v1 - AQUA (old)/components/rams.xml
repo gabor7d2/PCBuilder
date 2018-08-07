@@ -1,0 +1,97 @@
+<root>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+            <price>31690</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/kingston/hyperx-fury-8gb-2x4gb-ddr4-2400mhz-hx424c15fbk2-8-p296843629/</price_site>
+            <shop_site>https://www.aqua.hu/8gb-2400mhz-ddr4-ram-kingston-hyperx-fury-black-cl15-2x4gb-hx424c15fbk28-384038.html</shop_site>
+            <product_site>https://www.hyperxgaming.com/en/memory/fury-ddr4?partnum=HX424C15FB2K2/16</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>4000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+            <price>58490</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/kingston/hyperx-fury-16gb-2x8gb-ddr4-2400mhz-hx424c15fb2k2-16-p333957448/</price_site>
+            <shop_site>https://www.aqua.hu/16gb-2400mhz-ddr4-ram-kingston-hyperx-fury-black-cl15-2x8gb-hx424c15fb2k216-431296.html</shop_site>
+            <product_site>https://www.hyperxgaming.com/en/memory/fury-ddr4?partnum=HX424C15FBK2/8</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>8000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>G.Skill</brand>
+            <model_number>Aegis</model_number>
+            <price>27490</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/g-skill/aegis-8gb-2x4gb-ddr4-2133mhz-f4-2133c15d-8gis-p332414017/#</price_site>
+            <shop_site>https://www.aqua.hu/8gb-2133mhz-ddr4-ram-g-skill-aegis-cl15-2x4gb-f4-2133c15d-8gis-494708.html</shop_site>
+            <product_site>https://www.gskill.com/en/product/F4-2133C15D-8GIS</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2133</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>4000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>G.Skill</brand>
+            <model_number>Aegis</model_number>
+            <price>29090</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/g-skill/aegis-8gb-2x4gb-ddr4-2400mhz-f4-2400c15d-8gis-p332414039/</price_site>
+            <shop_site>https://www.aqua.hu/8gb-2400mhz-ddr4-ram-gskill-aegis-cl15-2x4gb-f4-2400c15d-8gis-474652.html</shop_site>
+            <product_site>https://www.gskill.com/en/product/F4-2400C15D-8GIS</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>4000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>G.Skill</brand>
+            <model_number>Aegis</model_number>
+            <price>50990</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/g-skill/aegis-16gb-2x8gb-ddr4-3000mhz-f4-3000c16d-16gisb-p342911248/</price_site>
+            <shop_site>https://www.aqua.hu/16gb-3000mhz-ddr4-ram-gskill-aegis-cl16-2x8gb-f4-3000c16d-16gisb-570434.html</shop_site>
+            <product_site>https://www.gskill.com/en/product/F4-3000C16D-16GISB</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>3000</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>8000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>16</latency>
+    </Ram>
+</root>

@@ -1,0 +1,142 @@
+<root>
+    <Case>
+        <ComponentInfo>
+            <brand>Zalman</brand>
+            <model_number>Z1 NEO</model_number>
+            <price>11490</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/zalman/z1-neo-p326676019/</price_site>
+            <shop_site>https://www.aqua.hu/zalman-z1-neo-tap-nelkuli-ablakos-haz-fekete-405940.html</shop_site>
+            <product_site>http://www.zalman.com/contents/products/view.html?no=19</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Cooler Master</brand>
+            <model_number>MasterBox Lite 5</model_number>
+            <price>14490</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/cooler-master/masterbox-lite-5-mcw-l5s3-kann-01-p370620347/</price_site>
+            <shop_site>https://www.aqua.hu/cooler-master-masterbox-lite-5-tap-nelkuli-ablakos-haz-fekete-mcw-l5s3-kann-01-545490.html</shop_site>
+            <product_site>http://www.coolermaster.com/case/mid-tower/masterbox-lite-5/</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Cooler Master</brand>
+            <model_number>MasterBox MB600L</model_number>
+            <price>15090</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/cooler-master/masterbox-mb600l-mcb-b600l-ka5n-p392631375/</price_site>
+            <shop_site>https://www.aqua.hu/cooler-master-masterbox-mb600l-tap-nelkuli-ablakos-haz-gunmetal-diszcsik-mcb-b600l-ka5n-s02-588580.html</shop_site>
+            <product_site>http://www.coolermaster.com/case/mid-tower/masterbox-mb600l/</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Cooler Master</brand>
+            <model_number>MasterBox 5</model_number>
+            <price>16690</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/cooler-master/masterbox-5-mcy-b5s1-kwnn-03-p358370733/</price_site>
+            <shop_site>https://www.aqua.hu/cooler-master-masterbox-5-tap-nelkuli-ablakos-haz-fekete-mcy-b5s1-kwnn-03-559348.html</shop_site>
+            <product_site>http://www.coolermaster.com/case/mid-tower/masterbox-5/</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>NZXT</brand>
+            <model_number>Source S340</model_number>
+            <price>24490</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/nzxt/source-s340-s340w-b1-w1-w3-p253958977/</price_site>
+            <shop_site>https://www.aqua.hu/nzxt-s340-tap-nelkuli-ablakos-haz-fekete-ca-s340w-b1-328834.html</shop_site>
+            <product_site>https://www.nzxt.com/products/s340-black</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>NZXT</brand>
+            <model_number>Phantom 410</model_number>
+            <price>29890</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/nzxt/phantom-410-ca-ph410-p65875477/</price_site>
+            <shop_site>https://www.aqua.hu/nzxt-phantom-410-tap-nelkuli-haz-fekete-feher-ca-ph410-b2-328478.html</shop_site>
+            <product_site>https://www.nzxt.com/products/phantom-410-black</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>NZXT</brand>
+            <model_number>S340 Elite</model_number>
+            <price>32790</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/nzxt/s340-elite-s340w-b3-b4-b5-w2-p353564481/</price_site>
+            <shop_site>https://www.aqua.hu/nzxt-s340-elite-tap-nelkuli-ablakos-haz-matt-fekete-ca-s340w-b3-495862.html</shop_site>
+            <product_site>https://www.nzxt.com/products/s340-elite-black</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Phanteks</brand>
+            <model_number>Eclipse P400</model_number>
+            <price>26390</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/phanteks/eclipse-p400-tempered-glass-ph-ec416ptg-p356165253/</price_site>
+            <shop_site>https://www.aqua.hu/phanteks-eclipse-p400-tempered-glass-tap-nelkuli-ablakos-haz-fekete-piros-ph-ec416ptgbr-504824.html</shop_site>
+            <product_site>http://www.phanteks.com/Eclipse-P400.html</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>Carbide SPEC-05</model_number>
+            <price>17490</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/corsair/carbide-series-spec-05-cc-9011138-p409934109/</price_site>
+            <shop_site>https://www.aqua.hu/corsair-carbide-series-spec-05-tap-nelkuli-ablakos-haz-fekete-cc-9011138-ww-621686.html</shop_site>
+            <product_site>https://www.corsair.com/us/en/Categories/Products/Cases/Mid-Tower-ATX-Cases/Carbide-Series-SPEC-05-Mid-Tower-Gaming-Case-%E2%80%94-Black/p/CC-9011138-WW</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>Carbide SPEC-04</model_number>
+            <price>17890</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/corsair/carbide-series-spec-04-cc-9011107-8-9-p368680203/</price_site>
+            <shop_site>https://www.aqua.hu/corsair-carbide-series-spec-04-tap-nelkuli-ablakos-haz-fekete-szurke-cc-9011109-ww-542314.html</shop_site>
+            <product_site>https://www.corsair.com/eu/en/Color/spec-04-config/p/CC-9011109-WW</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>Carbide SPEC-03</model_number>
+            <price>19390</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/corsair/carbide-series-spec-03-p232236443/</price_site>
+            <shop_site>https://www.aqua.hu/corsair-carbide-series-spec-03-red-led-tap-nelkuli-fekete-haz-cc-9011052-ww-286087.html</shop_site>
+            <product_site>https://www.corsair.com/us/en/Categories/Products/Cases/Carbide-Series%E2%84%A2-SPEC-03-Red-LED-Mid-Tower-Gaming-Case/p/CC-9011052-WW</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>Carbide 275R</model_number>
+            <price>23390</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/corsair/carbide-series-275r-cc-9011130-1-2-3-p406507535/</price_site>
+            <shop_site>https://www.aqua.hu/corsair-carbide-series-275r-tap-nelkuli-ablakos-haz-fekete-cc-9011130-ww-621652.html</shop_site>
+            <product_site>https://www.corsair.com/us/en/Color/Carbide-Series-275R-Tempered-Glass-Mid-Tower-Gaming-Case/p/CC-9011132-WW</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>Corsair</brand>
+            <model_number>Crystal 460X</model_number>
+            <price>33090</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/corsair/crystal-series-460x-cc-9011099-p356074785/</price_site>
+            <shop_site>https://www.aqua.hu/corsair-crystal-series-460x-compact-tap-nelkuli-ablakos-haz-fekete-cc-9011099-ww-495186.html</shop_site>
+            <product_site>https://www.corsair.com/us/en/Categories/Products/Cases/Crystal-Series%E2%84%A2-460X-Compact-ATX-Mid-Tower-Case/p/CC-9011099-WW</product_site>
+        </ComponentInfo>
+    </Case>
+    <Case>
+        <ComponentInfo>
+            <brand>be quiet!</brand>
+            <model_number>Pure Base 600</model_number>
+            <price>29390</price>
+            <price_site>https://www.arukereso.hu/szamitogep-haz-c3085/be-quiet/pure-base-600-window-bgw20-1-p361317035/</price_site>
+            <shop_site>https://www.aqua.hu/be-quiet-pure-base-600-window-tap-nelkuli-ablakos-haz-fekete-bgw21-523968.html</shop_site>
+            <product_site>https://www.bequiet.com/en/case/937</product_site>
+        </ComponentInfo>
+    </Case>
+</root>

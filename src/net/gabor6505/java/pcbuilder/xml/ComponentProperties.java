@@ -103,6 +103,17 @@ public class ComponentProperties {
         return getString(key);
     }
 
+    /**
+     * Checks if the specified key corresponds to a non-null, non-empty String value
+     *
+     * @param key The key to check
+     * @return True if and only if this key corresponds to a non-null and non-empty String value
+     */
+    public boolean checkValidity(String key) {
+        if (get(key) == null) return false;
+        return !get(key).isEmpty();
+    }
+
     public String getDef(String key) {
         if (key.substring(key.length() - 4).equals("_mhz")) {
             return Format.formatUnitValueDefault(getString(key), Format.HERTZ);

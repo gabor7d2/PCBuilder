@@ -26,4 +26,9 @@ public class TypeManager {
             }
         }
     }
+
+    public interface ReloadListener {
+
+        void reload();
+    }
 }

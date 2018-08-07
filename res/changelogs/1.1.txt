@@ -1,0 +1,9 @@
+• Added price support and total price calculations
+• Added support for price websites and shop websites
+• You can now view images in bigger size by right clicking
+• When adding a new profile, a progress indicator shows the progress
+
+• Tons of performance improvements
+• Polished the user interface
+• Added a help button that explains how the app works
+• Keyboard shortcuts for most of the actions (read the help)

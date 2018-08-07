@@ -1,0 +1,78 @@
+<root>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+            <price>30630</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/kingston/hyperx-fury-8gb-2x4gb-ddr4-2400mhz-hx424c15fbk2-8-p296843629/</price_site>
+            <shop_site>http://compker.hu/termek/27301</shop_site>
+            <product_site>https://www.hyperxgaming.com/en/memory/fury-ddr4?partnum=HX424C15FB2K2/16</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>4000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>Kingston</brand>
+            <model_number>HyperX FURY</model_number>
+            <price>54220</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/kingston/hyperx-fury-16gb-2x8gb-ddr4-2400mhz-hx424c15fb2k2-16-p333957448/</price_site>
+            <shop_site>http://compker.hu/termek/36408</shop_site>
+            <product_site>https://www.hyperxgaming.com/en/memory/fury-ddr4?partnum=HX424C15FBK2/8</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>8000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>G.Skill</brand>
+            <model_number>Aegis</model_number>
+            <price>28088</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/g-skill/aegis-8gb-2x4gb-ddr4-2400mhz-f4-2400c15d-8gis-p332414039/</price_site>
+            <shop_site>https://www.pcx.hu//g-skill-aegis-2x4gb-2400mhz-ddr4-f4-2400c15d-8gis-memoria-358504</shop_site>
+            <product_site>https://www.gskill.com/en/product/F4-2400C15D-8GIS</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>2400</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>4000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>15</latency>
+    </Ram>
+    <Ram>
+        <ComponentInfo>
+            <brand>G.Skill</brand>
+            <model_number>Aegis</model_number>
+            <price>49173</price>
+            <price_site>https://www.arukereso.hu/memoria-modul-c3577/g-skill/aegis-16gb-2x8gb-ddr4-3000mhz-f4-3000c16d-16gisb-p342911248/</price_site>
+            <shop_site>https://www.pcx.hu//g-skill-aegis-2x8gb-ddr4-3000mhz-f4-3000c16d-16gisb-memoria-954887</shop_site>
+            <product_site>https://www.gskill.com/en/product/F4-3000C16D-16GISB</product_site>
+            <image_path_extension>DDR4_2Slot</image_path_extension>
+        </ComponentInfo>
+        <RamType>
+            <type>DDR4</type>
+            <frequency>3000</frequency>
+        </RamType>
+
+        <capacity_per_piece_mb>8000</capacity_per_piece_mb>
+        <count>2</count>
+        <latency>16</latency>
+    </Ram>
+</root>

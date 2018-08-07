@@ -14,6 +14,8 @@ public final class Format {
     }
 
     private static String formatUnitValue(double value, String[] units, boolean useDefaultUnit) {
+        if (units == null) return null;
+
         NumberFormat formatter = DecimalFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
 
@@ -34,10 +36,12 @@ public final class Format {
     }
 
     public static String formatUnitValue(double value, String[] units) {
+        if (units == null) return null;
         return formatUnitValue(value, units, false);
     }
 
     public static String formatUnitValueDefault(double value, String[] units) {
+        if (units == null) return null;
         return formatUnitValue(value, units, true);
     }
 
@@ -46,16 +50,29 @@ public final class Format {
     }
 
     public static String formatUnitValue(String value, String[] units) {
+        if (value == null || units == null) return null;
         double convertedValue = Double.parseDouble(value);
         return formatUnitValue(convertedValue, units);
     }
 
     public static String formatUnitValueDefault(String value, String[] units) {
+        if (value == null || units == null) return null;
         double convertedValue = Double.parseDouble(value);
         return formatUnitValueDefault(convertedValue, units);
     }
 
     public static String formatBoolean(String bool) {
+        if (bool == null) return null;
         return bool.toLowerCase().equals("true") ? "Yes" : bool.toLowerCase().equals("false") ? "No" : "Unknown";
+    }
+
+    public static String formatCurrency(String value, String appendBefore, String appendAfter) {
+        if (value == null) return null;
+
+        NumberFormat formatter = DecimalFormat.getNumberInstance();
+        formatter.setMaximumFractionDigits(2);
+
+        double valueDouble = Double.parseDouble(value);
+        return appendBefore + formatter.format(valueDouble) + appendAfter;
     }
 }

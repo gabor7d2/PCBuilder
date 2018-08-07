@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Apple Support">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/Apple Support.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

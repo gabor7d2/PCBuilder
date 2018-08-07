@@ -17,6 +17,7 @@ public class AutoScrollPane extends JScrollPane implements ComponentListener, Sw
             setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         }
+
         setBorder(null);
         addComponentListener(this);
 
@@ -40,19 +41,23 @@ public class AutoScrollPane extends JScrollPane implements ComponentListener, Sw
         return contentPanel;
     }
 
-    // Handle the hiding of scroll bars when they are not needed
-    @Override
-    public void componentResized(ComponentEvent e) {
-        JScrollPane pane = (JScrollPane) e.getComponent();
-
+    /**
+     * Handle the hiding of scroll bars when they are not needed
+     */
+    public void handleScrollbars() {
         if (orientation == HORIZONTAL) {
-            if (pane.getSize().width >= pane.getPreferredSize().width) {
-                pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                pane.getHorizontalScrollBar().setVisible(false);
+            if (getSize().width >= getPreferredSize().width) {
+                setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                getHorizontalScrollBar().setVisible(false);
             } else {
-                pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+                setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
             }
         }
+    }
+
+    @Override
+    public void componentResized(ComponentEvent e) {
+        handleScrollbars();
     }
 
     @Override
