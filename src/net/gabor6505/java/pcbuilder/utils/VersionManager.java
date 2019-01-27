@@ -17,7 +17,7 @@ import static net.gabor6505.java.pcbuilder.gui.ProfileManager.PROFILES_INFO_FILE
 // TODO Implement update checking
 public class VersionManager {
 
-    private final static double VERSION = 1.2;
+    private final static double VERSION = 1.3;
     private static double previousVersion = 1.0;
 
     public final static String CURRENT_VERSION_NODE_NAME = "currentVersion";

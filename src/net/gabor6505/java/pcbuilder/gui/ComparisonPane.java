@@ -147,7 +147,7 @@ public class ComparisonPane extends ScrollPane2D implements ActionListener, Stat
             }
         }
 
-        String totalStr = Format.formatCurrency(String.valueOf(total), "", " Ft");
+        String totalStr = Format.formatCurrency(String.valueOf(total));
         totalPrice.setVisible(total != 0);
         totalPrice.setText("Total Price: " + totalStr);
     }

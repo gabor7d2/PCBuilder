@@ -1,0 +1,1 @@
+• Currency prefix and suffix is now configurable (in "user.home/.pcbuilder/profiles.xml")

@@ -1,3 +1,4 @@
 <root>
+    <currency prefix="" suffix=" Ft"/>
     <profile name="Sample Profile"/>
 </root>

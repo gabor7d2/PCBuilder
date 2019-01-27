@@ -50,6 +50,7 @@ public class MainFrame extends JFrame implements KeyEventDispatcher {
         super();
         setIconImages(APP_ICONS);
 
+        // TODO set dock icon if os = macos
         /*if (System.getProperty("os.name").toLowerCase().contains("mac os")) {
             try {
                 com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass().getResourceAsStream("/icons/icon.png")));

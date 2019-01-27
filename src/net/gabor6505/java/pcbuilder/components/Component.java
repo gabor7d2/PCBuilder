@@ -114,7 +114,7 @@ public class Component extends ComponentProperties {
     }
 
     public String getFormattedPrice() {
-        return Format.formatCurrency(price, "", " Ft");
+        return Format.formatCurrency(price);
     }
 
     public String getImagePath() {

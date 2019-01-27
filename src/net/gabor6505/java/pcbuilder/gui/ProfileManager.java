@@ -4,6 +4,7 @@ import net.gabor6505.java.pcbuilder.gui.dialog.AddProfileDialog;
 import net.gabor6505.java.pcbuilder.gui.dialog.Dialogs;
 import net.gabor6505.java.pcbuilder.utils.FileUtils;
 import net.gabor6505.java.pcbuilder.utils.FileWorker;
+import net.gabor6505.java.pcbuilder.utils.Format;
 import net.gabor6505.java.pcbuilder.utils.Utils;
 import net.gabor6505.java.pcbuilder.xml.*;
 import org.w3c.dom.Element;
@@ -22,6 +23,7 @@ import static net.gabor6505.java.pcbuilder.gui.ProfileManager.ProfileType.ZIP_UR
 import static net.gabor6505.java.pcbuilder.utils.FileUtils.FileOperationResult.*;
 import static net.gabor6505.java.pcbuilder.xml.XmlParser.*;
 
+// TODO rename profiles.xml to a more appropriate name, config.xml
 public class ProfileManager extends JComboBox<String> implements ActionListener {
 
     private static ProfileManager INSTANCE;
@@ -61,6 +63,8 @@ public class ProfileManager extends JComboBox<String> implements ActionListener 
         //processXmlParseResult(XmlParseResult.IO_ERROR);
 
         checkIO();
+
+        Format.loadCurrency();
         loadProfiles();
 
         addActionListener(this);
