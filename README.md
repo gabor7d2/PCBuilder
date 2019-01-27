@@ -10,7 +10,7 @@ Feel free to open issues, i might solve them, although I cant promise that they 
 
 ### Current features:
 * **Native look** depending on OS
-* Display components with defined images, names, and specs
+* Display components with defined images, manufacturers, models, prices and specs
 * **3 types of links**
   * clicking on brand name or model number opens up the **product site**
   * clicking on price opens up the **configured shop** site that the price originates from
@@ -27,6 +27,7 @@ Feel free to open issues, i might solve them, although I cant promise that they 
 * **Universal product properties and components** - currently all extra properties below a product and extra categories need to be implemented in Java classes in order to be displayed
 * Support for **more than one shop + price comparisons**
 * Support for **dynamic product prices** - fetching the price from a price site (this would require me to develop html info extractors for all price sites I want to support)
+* **Compatibility checker** between components
 
 The config profiles have to be made manually, following the structure found here inside the Resources folder. (there are some example profiles in there) If I have the mood I might make a tutorial here about making profiles
 
